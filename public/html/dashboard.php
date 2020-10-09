@@ -7,20 +7,20 @@ echo $view->render('navbar.inc');
 <div class="container">
   <div class="row mb-4">
     <p class="col-xs-6">Hello, <?=$_SESSION["username"] ? $_SESSION["username"] : "Anonymous"?></p>
-    <a href="/chocolate/view/" class="col-xs-6 text-right">View all chocolates</a>
+    <a href="/chocolate/search/" class="col-xs-6 text-right">View all chocolates</a>
   </div>
   <div class="row">
-  <?php
-for ($x = 0; $x < 10; $x++) {
-    $i = $x % 3;
+    <?php
+foreach ($this->chocolates as $chocolate) {
+    extract($chocolate);
+    $i = $ChocoID % 3;
     echo "<div class='col-xs-6 col-sm-4 col-lg-3'>
       <div class='card'>
-        <img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$x'>
+        <img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$ChocoID'>
         <div class='card-body'>
-          <p class='card-title'>Coklat $x</p>
-          <p class='card-text'>Enak</p>
-          <p class='card-text'>Sehat</p>
-          <p class='card-text'>Bergizi</p>
+          <p class='card-title'>$Name</p>
+          <p class='card-text'>Amount sold: $Sold</p>
+          <p class='card-text'>Price: $Price</p>
         </div>
       </div>
     </div>";

@@ -5,8 +5,10 @@ foreach ($this->items as $item => $link) {
     echo "<a class='navbar-item' href=$link>$item</a>";
 }
 ?>
-  <input class="navbar-item fill mr-2 ml-2" placeholder="23" min="0" id="choco-id">
-  <a class="btn btn-secondary btn-small navbar-item ml-2 mr-6" href="/chocolate/search/">Search</button>
+  <form action='/chocolate/search/' method="POST" class="fill">
+    <input class="navbar-item fill mr-2 ml-2 pt-2 pb-2" placeholder="Leslie" min="0" name="choco_search">
+    <button type="submit" class="btn btn-secondary btn-small navbar-item">Search</button>
+  </form>
   <?=isset($_SESSION["username"]) ?
 '<a class="navbar-item text-right" href="/user/login/"> Logout </a>'
 :
@@ -15,8 +17,3 @@ foreach ($this->items as $item => $link) {
 <a class="navbar-item text-left" href="/user/register/"> Register </a>'
 ?>
 </nav>
-<script>
-function getChocoId(){
-  var chocoId = document.getElementById('choco-id').value;
-}
-</script>

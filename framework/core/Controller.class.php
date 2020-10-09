@@ -4,14 +4,15 @@ class Controller
     public function __construct()
     {
         require_once MODEL_PATH . DS . "UserModel.class.php";
+        require_once MODEL_PATH . DS . "ChocolateModel.class.php";
         $this->userModel = new UserModel();
+        $this->chocolateModel = new ChocolateModel();
     }
     public function checkCredential()
     {
         if (isset($_COOKIE[LOGIN_COOKIE])) {
             $sha1 = $_COOKIE[LOGIN_COOKIE];
             $id = $this->userModel->validate($sha1);
-            echo $id;
             if ($id) {
                 $this->loginUtil($id, $sha1);
                 return true;

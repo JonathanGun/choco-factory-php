@@ -13,13 +13,13 @@
 }
 
 .navbar-brand {
-  padding: 0px 10px;
+  padding: 5px 10px;
   font-size: large;
   vertical-align: inherit;
 }
 
 .navbar-item {
-  padding: 0px 10px;
+  padding: 10px 10px;
   vertical-align: inherit;
 }
 
@@ -28,9 +28,23 @@
   text-align: center;
 }
 
+.navbar > form {
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  margin: 0rem 3rem;
+}
+
+.navbar > form > button {
+  padding: 0px 3rem;
+  margin-right: 3rem;
+}
+
 @media (max-width: 768px) {
-  .navbar {
+  .navbar,
+  .navbar > form {
     flex-direction: column;
+    margin: 0rem;
   }
   .navbar * {
     width: 100%;

@@ -9,6 +9,7 @@ class IndexController extends Controller
             $view = new IndexView();
             $view->title = "A-Chong-co | Dashboard";
             $view->content_file = HTML_PATH . 'dashboard.php';
+            $view->chocolates = $this->chocolateModel->getMostSoldChocolates(10);
             echo $view->render('master.inc');
         } else {
             header('Location: /user/login/');
