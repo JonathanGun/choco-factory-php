@@ -9,7 +9,7 @@ echo $view->render('navbar.inc');
 $id = $this->choco_id;
 $i = $id % 3;
 extract($this->properties["chocolate"]);
-echo "<h2>$Name</h2>";
+echo "<h2 class='pb-2 pt-2'>$Name</h2>";
 ?>
   <div class="row">
     <div class="col-xs-12 col-sm-3">
@@ -29,7 +29,11 @@ echo "<h2>$Name</h2>";
       <a class="btn float-right mt-5 mb-3 btn-secondary" href="/">Back</a>
     </div>
     <div class="col-xs-2">
-      <a class="btn full-width mt-5 mb-3" href="/chocolate/buy/<?php echo $id ?>">Buy Now</a>
+      <?php
+echo $_SESSION['id'] == 1 ? //TODO check super user
+"<a class='btn full-width mt-5 mb-3' href='/chocolate/restock/$id'>Add Stock</a>"
+:
+"<a class='btn full-width mt-5 mb-3' href='/chocolate/buy/$id'>Buy Now</a>"; ?>
     </div>
   </div>
 </div>

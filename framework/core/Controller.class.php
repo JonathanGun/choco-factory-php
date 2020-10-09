@@ -5,8 +5,10 @@ class Controller
     {
         require_once MODEL_PATH . DS . "UserModel.class.php";
         require_once MODEL_PATH . DS . "ChocolateModel.class.php";
+        require_once MODEL_PATH . DS . "TransactionModel.class.php";
         $this->userModel = new UserModel();
         $this->chocolateModel = new ChocolateModel();
+        $this->transactionModel = new TransactionModel();
     }
     public function checkCredential()
     {

@@ -14,6 +14,7 @@ class UserController extends Controller
             require_once VIEW_PATH . "UserView.class.php";
             $view = new UserView();
             $view->title = "A-Chong-co | History";
+            $view->transactions = $this->transactionModel->getTransactions($_SESSION['id'], 10);
             $view->content_file = USER_PATH . 'history.php';
             echo $view->render('master.inc');
         } else {

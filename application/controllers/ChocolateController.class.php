@@ -73,7 +73,7 @@ class ChocolateController extends Controller
                 echo $amount;
                 // TODO reduce chocolate on buy
                 // Add to transaction
-                header("Location: /chocolate/buysuccess/$id");
+                header("Location: /chocolate/buysuccess/$i");
                 die();
             }
             require_once VIEW_PATH . "ChocolateView.class.php";
@@ -82,6 +82,61 @@ class ChocolateController extends Controller
             $view->chocolate = $this->model->selectByPk($i);
             $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'buy.php';
+            echo $view->render('master.inc');
+        } else {
+            header('Location: /user/login/');
+            die();
+        }
+    }
+
+    public function buysuccess($i)
+    {
+        if ($this->checkCredential()) {
+            require_once VIEW_PATH . "ChocolateView.class.php";
+            $view = new ChocolateView();
+            $view->title = "A-Chong-co | Buy";
+            $view->chocolate = $this->model->selectByPk($i);
+            $view->choco_id = $i;
+            $view->content_file = CHOCOLATE_PATH . 'buysuccess.php';
+            echo $view->render('master.inc');
+        } else {
+            header('Location: /user/login/');
+            die();
+        }
+    }
+
+    public function restock($i)
+    {
+        if ($this->checkCredential()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                extract($_POST);
+                echo $amount;
+                // TODO add chocolate on restock
+                header("Location: /chocolate/restocksuccess/$i");
+                die();
+            }
+            require_once VIEW_PATH . "ChocolateView.class.php";
+            $view = new ChocolateView();
+            $view->title = "A-Chong-co | Add Stock";
+            $view->chocolate = $this->model->selectByPk($i);
+            $view->choco_id = $i;
+            $view->content_file = CHOCOLATE_PATH . 'restock.php';
+            echo $view->render('master.inc');
+        } else {
+            header('Location: /user/login/');
+            die();
+        }
+    }
+
+    public function restocksuccess($i)
+    {
+        if ($this->checkCredential()) {
+            require_once VIEW_PATH . "ChocolateView.class.php";
+            $view = new ChocolateView();
+            $view->title = "A-Chong-co | Add Stock";
+            $view->chocolate = $this->model->selectByPk($i);
+            $view->choco_id = $i;
+            $view->content_file = CHOCOLATE_PATH . 'restocksuccess.php';
             echo $view->render('master.inc');
         } else {
             header('Location: /user/login/');
