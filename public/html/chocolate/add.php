@@ -5,18 +5,37 @@ echo $view->render('navbar.inc');
 ?>
 <div class="container">
   <h2 class="mb-5">Add New Chocolate</h2>
-  <form>
+  <form action="/chocolate/add/" method="POST">
     <div class="form-group row">
       <div class="col-sm-2 form-label">Name</div>
       <div class="col-sm-10">
-        <input type="text" class="form-input" placeholder="Wangkylicious">
+        <input type="text" class="form-input" name="name" placeholder="Wangkylicious">
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-2 form-label">Price</div>
       <div class="col-sm-10">
-        <input class="form-input" placeholder="6.9" min="0">
+        <input class="form-input" placeholder="8000" name="price" min="0">
       </div>
     </div>
+    <div class="form-group row">
+      <div class="col-sm-2 form-label">Desciption</div>
+      <div class="col-sm-10">
+        <textarea type="text" class="form-input" placeholder="Describe your chocolate!" name="description"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 form-label">Image</div>
+      <div class="col-sm-10">
+        <input type="file" class="form-input" name="image">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 form-label">Amount</div>
+      <div class="col-sm-10">
+        <input class="form-input" name="stock" placeholder="25" min="1" step="1">
+      </div>
+    </div>
+    <input type="submit" class="btn float-right mt-5" value="Add Chocolate">
   </form>
 </div>

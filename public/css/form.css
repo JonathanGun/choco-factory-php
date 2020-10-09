@@ -1,5 +1,6 @@
 input,
-select {
+select,
+textarea {
   padding: 12px 20px;
   display: inline-block;
   border: 1px solid #ccc;
@@ -7,12 +8,17 @@ select {
   box-sizing: border-box;
 }
 
+input[type="file"] {
+  background-color: #fff;
+}
+
 .form-group {
   margin-bottom: var(--mb-2);
   align-items: center;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
   width: 100%;
 }
 
@@ -33,8 +39,8 @@ select {
 }
 
 .btn-small {
-  padding: 5px 5px;
-  font-size: normal;
+  padding: 8px 12px;
+  font-size: small;
 }
 
 .btn-secondary {

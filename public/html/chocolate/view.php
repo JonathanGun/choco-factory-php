@@ -4,20 +4,32 @@ $view->items = array("History" => "/user/history/");
 echo $view->render('navbar.inc');
 ?>
 
-<div class="container">
+<div class="container bg-white">
   <?php
-$x = $this->choco_id;
-$i = $x % 3;
-echo "<div class='col-xs-12'>
-        <div class='card horizontal'>
-          <img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$x'>
-          <div class='card-body'>
-            <p class='card-title'>Coklat $x</p>
-            <p class='card-text'>Enak</p>
-            <p class='card-text'>Sehat</p>
-            <p class='card-text'>Bergizi</p>
-          </div>
-        </div>
-      </div>";
+$id = $this->choco_id;
+$i = $id % 3;
+extract($this->properties["chocolate"]);
+echo "<h2>$Name</h2>";
 ?>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3">
+      <?php echo "<img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$id'>"; ?>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+      <?php echo "
+      <p class='mb-1'>Amount sold: $Sold</p>
+      <p class='mb-1'>Price: Rp$Price,00</p>
+      <p class='mb-1'>Amount Remaining: $Stock</p>
+      <p class='mb-1'>Description</p>
+      <p class='mb-1'>$Description</p>
+      "
+?>
+    </div>
+    <div class="col-xs-10">
+      <a class="btn float-right mt-5 mb-3 btn-secondary" href="/">Back</a>
+    </div>
+    <div class="col-xs-2">
+      <a class="btn full-width mt-5 mb-3" href="/chocolate/buy/<?php echo $id ?>">Buy Now</a>
+    </div>
+  </div>
 </div>

@@ -15,14 +15,14 @@ foreach ($this->chocolates as $chocolate) {
     extract($chocolate);
     $i = $ChocoID % 3;
     echo "<div class='col-xs-6 col-sm-4 col-lg-3'>
-      <div class='card'>
+      <a class='card' href='/chocolate/view/$i/'>
         <img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$ChocoID'>
         <div class='card-body'>
           <p class='card-title'>$Name</p>
           <p class='card-text'>Amount sold: $Sold</p>
           <p class='card-text'>Price: $Price</p>
         </div>
-      </div>
+      </a>
     </div>";
 }
 ?>

@@ -32,6 +32,8 @@ class UserController extends Controller
                 $id = $this->model->validate($sha1);
                 if ($id) {
                     $this->loginUtil($id, $sha1);
+                    header('Location: /');
+                    die();
                 }
             }
         }
@@ -53,6 +55,8 @@ class UserController extends Controller
                 $sha1 = sha1($username . $password . SALT);
                 $id = $this->model->insert(array("Username" => $username, "Password" => $password, "Email" => $email));
                 $this->loginUtil($id, $sha1);
+                header('Location: /');
+                die();
             }
         }
         // GET or invalid POST (redirect to register)
@@ -61,12 +65,5 @@ class UserController extends Controller
         $view->title = "A-Chong-co | Register";
         $view->content_file = USER_PATH . 'register.php';
         echo $view->render('master.inc');
-    }
-
-    public function loginUtil($id, $sha1)
-    {
-        parent::loginUtil($id, $sha1);
-        header('Location: /');
-        die();
     }
 }
