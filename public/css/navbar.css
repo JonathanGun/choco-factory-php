@@ -1,0 +1,59 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--first-color);
+  text-decoration: none;
+  overflow: hidden;
+  position: absolute;
+  /*position: fixed;*/
+  top: 0;
+  width: 100%;
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+
+.navbar-brand {
+  padding: 0px 10px;
+  font-size: large;
+  vertical-align: inherit;
+}
+
+.navbar-item {
+  padding: 0px 10px;
+  vertical-align: inherit;
+}
+
+.navbar-item.fill {
+  flex-grow: 1;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbar * {
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar a:not(:first-child),
+  .navbar p:not(:first-child) {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    padding: 10px 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    padding: 10px 200px;
+  }
+}
