@@ -6,7 +6,7 @@ echo $view->render('navbar.inc');
 
 <div class="container">
   <div class="row mb-4">
-    <p class="col-xs-6">Hello, <?=isset($this->username) ? $this->username : "Anonymous"?></p>
+    <p class="col-xs-6">Hello, <?=$_SESSION["username"] ? $_SESSION["username"] : "Anonymous"?></p>
     <a href="/chocolate/view/" class="col-xs-6 text-right">View all chocolates</a>
   </div>
   <div class="row">

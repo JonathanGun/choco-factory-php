@@ -2,17 +2,16 @@
 
 ## Tujuan Pembelajaran Tugas Besar 1
 
-* Mahasiswa mampu membuat sebuah aplikasi web dengan menggunakan HTML, CSS dan JS.
-* Mahasiswa mampu  membuat sebuah layanan web dengan menggunakan PHP.
-* Mahasiswa mampu menggunakan AJAX 
-* Mahasiswa  memahami penangananan state dan perbedaan HTTP method.
+- Mahasiswa mampu membuat sebuah aplikasi web dengan menggunakan HTML, CSS dan JS.
+- Mahasiswa mampu membuat sebuah layanan web dengan menggunakan PHP.
+- Mahasiswa mampu menggunakan AJAX
+- Mahasiswa memahami penangananan state dan perbedaan HTTP method.
 
 ## Deskripsi Singkat
 
 <div align="center">
 <img src="https://i.imgur.com/0NI6Mkf.png" alt=""/>
 </div>
-
 
 Anda mungkin sudah tahu mengenai pabrik coklat terbesar seantero dunia, Willy Wangky.
 Akan tetapi, produsen terbaik tidak akan sukses tanpa konsumen dan distributor terbaik.
@@ -35,9 +34,9 @@ Perlu diingat bahwa tata letak komponen harus mengikuti desain dari Jan.
 
 ## Tools
 
-* Untuk frontend, gunakan Javascript, HTML dan CSS. Tidak boleh menggunakan library atau framework CSS atau JS (e.g. JQuery, lodash, atau Bootstrap). CSS sebisa mungkin ada di file yang berbeda dengan HTML (tidak inline styling).
-* Untuk backend, wajib menggunakan PHP tanpa framework apapun. Harap diperhatikan, Anda harus mengimplementasikan fitur menggunakan HTTP method yang tepat.
-* Gunakan MySQL untuk menyimpan data.
+- Untuk frontend, gunakan Javascript, HTML dan CSS. Tidak boleh menggunakan library atau framework CSS atau JS (e.g. JQuery, lodash, atau Bootstrap). CSS sebisa mungkin ada di file yang berbeda dengan HTML (tidak inline styling).
+- Untuk backend, wajib menggunakan PHP tanpa framework apapun. Harap diperhatikan, Anda harus mengimplementasikan fitur menggunakan HTTP method yang tepat.
+- Gunakan MySQL untuk menyimpan data.
 
 ## Spesifikasi
 
@@ -46,7 +45,7 @@ Perlu diingat bahwa tata letak komponen harus mengikuti desain dari Jan.
 ![](mockup/Login.png)
 
 Halaman pertama yang ditampilkan jika pengguna belum login atau sudah logout adalah halaman Login.
-Pengguna dapat melakukan login sebagai user atau superuser. Login hanya membandingkan email dan password saja. 
+Pengguna dapat melakukan login sebagai user atau superuser. Login hanya membandingkan email dan password saja.
 Tidak perlu tambahan proteksi apapun.
 
 Identitas pengguna yang sudah login akan disimpan sebagai cookie dalam browser. Cookie menyimpan data pengguna dalam bentuk string dengan panjang tertentu. Untuk mengetahui pengguna mana yang sedang login, string tersebut dapat dilihat di basis data. Identitas tersebut tidak boleh disimpan sebagai parameter HTTP GET. Jika cookie ini tidak ada, maka pengguna dianggap belum login dan aplikasi akan selalu mengarahkan (redirect) pengguna ke halaman ini, meskipun pengguna membuka halaman yang lain. Masa berlaku cookie dibebaskan.
@@ -62,8 +61,9 @@ Pengecekan keunikan nilai field dilakukan menggunakan AJAX. Jika unik, border fi
 Jika tidak unik, akan muncul pesan error pada form.
 
 Validasi lain yang dilakukan pada sisi klien pada halaman ini adalah:
-* Email memiliki format email standar seperti “example@example.com”.
-* Username hanya menerima kombinasi alphabet, angka, dan underscore.
+
+- Email memiliki format email standar seperti “example@example.com”.
+- Username hanya menerima kombinasi alphabet, angka, dan underscore.
 
 Setelah semua nilai field sudah diisi dan valid, pengguna dapat mendaftarkan akun barunya.
 Jika akun berhasil didaftarkan, pengguna langsung diarahkan ke halaman Dashboard.
@@ -83,9 +83,7 @@ Header aplikasi web untuk user terdiri dari search bar, pilihan untuk melihat da
 
 ![](mockup/Search.png)
 
-
 Hasil pencarian dari search bar di halaman Dashboard akan ditampilkan pada halaman ini. Untuk setiap coklat, ditampilkan informasi nama, deskripsi, banyak coklat terjual, dan gambar coklat. Pengguna dapat melihat detail coklat dengan menekan bagian manapun pada section coklat tersebut.
-
 
 Jika daftar coklat melebihi jumlah tertentu (jumlah didefinisikan sendiri), maka akan muncul pagination untuk melihat daftar coklat selebihnya. Ketika memilih page, pengguna tidak diarahkan ke halaman baru namun daftar coklat langsung berubah di halaman ini.
 
@@ -116,7 +114,7 @@ Jika pengguna login sebagai superuser, tombol “Buy Now” digantikan oleh tomb
 ![](mockup/History.png)
 
 Pada halaman ini, ditampilkan daftar coklat yang telah dibeli.
-Daftar diurutkan berdasarkan tanggal pembelian coklat. 
+Daftar diurutkan berdasarkan tanggal pembelian coklat.
 Untuk setiap transaksi, ditampilkan informasi nama, jumlah pembelian, total harga, waktu pembelian dan alamat pengiriman.
 Pengguna dapat mengetahui detail coklat yang telah dibeli dengan menekan nama coklat yang akan mengarahkan pengguna ke halaman Chocolate Detail.
 
@@ -131,8 +129,8 @@ Seluruh detail pada coklat harus diisi sebagai persyaratan coklat dapat ditambah
 
 ## Keterangan Tambahan
 
-* Jam pada aplikasi web mengacu pada jam lokal pengguna.
-* Basis data didefinisikan sendiri.
+- Jam pada aplikasi web mengacu pada jam lokal pengguna.
+- Basis data didefinisikan sendiri.
 
 ## Bonus
 
@@ -146,17 +144,18 @@ Catatan: Kerjakan dahulu spesifikasi wajib sebelum mengerjakan bonus.
 
 Untuk membantu anda dalam mengerjakan tugas ini, ada beberapa keyword yang bisa anda cari untuk menyelesaikan tugas ini.
 
-|              | Kata Kunci                                                                                            |
-| ------------ | ----------------------------------------------------------------------------------------------------- |
-| HTTP methods | get, post, put, delete                                                                                |
-| CSS          | margin, padding, font-size, text-align, flex, grid, border, color, div, span, anchor tag, box-shadow  |
-| Javascript   | XMLHTTPRequest, addEventListener                                                                      |
-| PHP          | mysqli_connect, mysql_query, $_GET, $_POST, $_COOKIE, var_dump, print_r, echo, require, fungsi header |
-| SQL query    | SELECT, INSERT, UPDATE, DELETE, WHERE, operator LIKE                                                  |
+|              | Kata Kunci                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------- |
+| HTTP methods | get, post, put, delete                                                                                   |
+| CSS          | margin, padding, font-size, text-align, flex, grid, border, color, div, span, anchor tag, box-shadow     |
+| Javascript   | XMLHTTPRequest, addEventListener                                                                         |
+| PHP          | mysqli_connect, mysql_query, $_GET, $\_POST, \$\_COOKIE, var_dump, print_r, echo, require, fungsi header |
+| SQL query    | SELECT, INSERT, UPDATE, DELETE, WHERE, operator LIKE                                                     |
 
 Jika ada pertanyaan, silahkan bertanya di channel Tubes 1 di MS Teams.
 
 ## Anggota Kelompok
+
 Anggota kelompok dapat diisi pada spreadsheet berikut : https://docs.google.com/spreadsheets/d/1l2H6Er4lZjyiO2ehqlBKOOZT5gE1pLukw2EHTGzqY3U/edit?usp=sharing
 
 ## Petunjuk Pengerjaan
@@ -167,12 +166,12 @@ Anggota kelompok dapat diisi pada spreadsheet berikut : https://docs.google.com/
 4. Ubah hak akses repository hasil Fork anda menjadi private.
 5. Silakan commit pada repository anda (hasil fork). Lakukan beberapa commit dengan pesan yang bermakna, contoh: `add login form`, `fix login bug`, jangan seperti `final`, `dikit lagi`, `benerin bug`.
 6. Buatlah file README yang berisi:
-    * Deskripsi aplikasi web
-    * Daftar requirement
-    * Cara instalasi
-    * Cara menjalankan server
-    * Screenshot tampilan aplikasi, dan
-    * Penjelasan mengenai pembagian tugas masing-masing anggota (lihat formatnya pada bagian pembagian tugas).
+   - Deskripsi aplikasi web
+   - Daftar requirement
+   - Cara instalasi
+   - Cara menjalankan server
+   - Screenshot tampilan aplikasi, dan
+   - Penjelasan mengenai pembagian tugas masing-masing anggota (lihat formatnya pada bagian pembagian tugas).
 
 ## Pengumpulan Tugas
 
@@ -183,11 +182,13 @@ Deadline tugas adalah pada hari Minggu, 25 Oktober 2020 pukul 19.00 WIB. Waktu p
 Setiap anggota kelompok diwajibkan untuk mengerjakan bagian frontend dan backend.
 
 ### Frontend
+
 1. Login : 13518xxx, 13518xxx
 2. Register : 13518xxx
 3. (Lanjutkan …)
 
 ### Backend
+
 1. Login : 13518xxx, 13518xxx
 2. Register : 13518xxx
 3. (Lanjutkan…)
@@ -197,3 +198,12 @@ Setiap anggota kelompok diwajibkan untuk mengerjakan bagian frontend dan backend
 Asisten IF3110 - 2020
 
 Abel | Agwar | Asif | Iwang | Meyer | Vendra
+
+# README STARTS HERE
+
+# Cara Setup
+
+1. Install XAMPP
+1. Restore `chocofac20201009.sql`
+1. Copy `config.example.ini` ke `config.ini`, sesuaikan
+1. Run XAMPP

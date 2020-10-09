@@ -8,14 +8,9 @@ class Model
     protected $fields = array(); //fields list
     public function __construct($table)
     {
-        $dbconfig['host'] = $GLOBALS['config']['host'];
-        $dbconfig['user'] = $GLOBALS['config']['user'];
-        $dbconfig['password'] = $GLOBALS['config']['password'];
-        $dbconfig['dbname'] = $GLOBALS['config']['dbname'];
-        $dbconfig['port'] = $GLOBALS['config']['port'];
-        $dbconfig['charset'] = $GLOBALS['config']['charset'];
-        $this->db = new Mysql($dbconfig);
-        $this->table = $GLOBALS['config']['prefix'] . $table;
+        $this->dbconfig = parse_ini_file(CONFIG_PATH . DS . 'config.ini', true);
+        $this->db = new Mysql($this->dbconfig);
+        $this->table = $this->dbconfig['prefix'] . $table;
         $this->getFields();
     }
     /**

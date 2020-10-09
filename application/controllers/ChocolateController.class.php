@@ -1,6 +1,6 @@
 <?php
 
-class ChocolateController
+class ChocolateController extends Controller
 {
     public function search()
     {

@@ -1,16 +1,29 @@
 <?php
 class Framework
 {
-    private static $request;
-    private static $controller;
 
     public static function run()
     {
+        // Initialization
         self::init();
-        self::load_controller();
-        self::dispatch();
+
+        // Start session
+        session_start();
+
+        // Routing
+        $request = new Request();
+        Router::parse($request->url, $request);
+
+        // Load controller
+        $name = $request->controller . "Controller";
+        $file = CONTROLLER_PATH . $name . '.class.php';
+        require $file;
+        $controller = new $name();
+
+        // Dispatch
+        call_user_func_array([$controller, $request->action], $request->params);
     }
-    // Initialization
+
     private static function init()
     {
         // Define path constants
@@ -36,8 +49,12 @@ class Framework
         define("CHOCOLATE_PATH", HTML_PATH . "chocolate" . DS);
         define("USER_PATH", HTML_PATH . "user" . DS);
 
+        // Define other constants
+        define("LOGIN_COOKIE", 'loginfo');
+        define("SALT", 'anjaytubes');
+
         // Load core classes
-        foreach (array(CORE_PATH, DB_PATH, CONFIG_PATH) as $dir) {
+        foreach (array(CORE_PATH, DB_PATH) as $dir) {
             foreach (scandir($dir) as $filename) {
                 $path = $dir . $filename;
                 if ($path != __FILE__) {
@@ -47,28 +64,5 @@ class Framework
                 }
             }
         }
-
-        // Load configuration file
-        $GLOBALS['config'] = include CONFIG_PATH . "config.php";
-
-        // Start session
-        session_start();
-    }
-
-    // Autoloading
-    private static function load_controller()
-    {
-        self::$request = new Request();
-        Router::parse(self::$request->url, self::$request);
-        $name = self::$request->controller . "Controller";
-        $file = CONTROLLER_PATH . $name . '.class.php';
-        require $file;
-        self::$controller = new $name();
-    }
-
-    // Routing and dispatching
-    private static function dispatch()
-    {
-        call_user_func_array([self::$controller, self::$request->action], self::$request->params);
     }
 }
