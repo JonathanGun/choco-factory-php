@@ -23,7 +23,7 @@
   vertical-align: inherit;
 }
 
-.navbar-item.fill {
+.fill {
   flex-grow: 1;
   text-align: center;
 }
@@ -46,10 +46,17 @@
     flex-direction: column;
     margin: 0rem;
   }
+  .navbar > form > input,
+  .navbar > form > button {
+    padding: 0.3rem;
+  }
   .navbar * {
     width: 100%;
-    padding: 5px;
+    padding: 0 0;
     margin: 5px;
+  }
+  .bg-white {
+    margin-top: 10rem;
   }
 }
 

@@ -76,7 +76,8 @@ class UserController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
-            $unique = !$this->model->exists($username, $password, $email);
+            // TODO cek unik di ajax juga
+            $unique = !$this->model->exists($username, $email);
             if ($unique && $username && $password && $email) {
                 $sha1 = sha1($username . $password . SALT);
                 $id = $this->model->insert(array("Username" => $username, "Password" => $password, "Email" => $email));

@@ -24,6 +24,14 @@
   }
 }
 
+.flex {
+  display: flex;
+}
+
+.inline {
+  display: inline;
+}
+
 .text-center {
   text-align: center;
 }
@@ -51,6 +59,10 @@
 .full-width {
   width: 100%;
   display: block;
+}
+
+.large-text {
+  font-size: larger;
 }
 
 .jumbotron {

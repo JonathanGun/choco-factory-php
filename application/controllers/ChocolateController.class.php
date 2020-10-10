@@ -34,7 +34,7 @@ class ChocolateController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
             $id = $this->model->insert(array("Name" => $name, "Price" => $price, "Description" => $description, "Stock" => $stock));
-            echo $id;
+            // TODO save uploaded image
             if ($id) {
                 header("Location: /chocolate/view/$id");
                 die();
@@ -47,7 +47,7 @@ class ChocolateController extends Controller
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add New Chocolate";
-            $view->content_file = CHOCOLATE_PATH . 'add.php';
+            $view->content_file = CHOCOLATE_PATH . 'create.php';
             echo $view->render('master.php');
         }
     }
@@ -62,8 +62,7 @@ class ChocolateController extends Controller
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Details";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->choco_id = $i;
-            $view->content_file = CHOCOLATE_PATH . 'view.php';
+            $view->content_file = CHOCOLATE_PATH . 'read.php';
             echo $view->render('master.php');
         }
     }
@@ -76,42 +75,26 @@ class ChocolateController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
-            echo $amount;
-            // TODO check input
-            // TODO enough choco
-            $validInput = true;
-            if ($validInput) {
-                // TODO reduce chocolate on buy
-                // TODO Add to transaction
-                header("Location: /chocolate/buysuccess/$i/");
-                die();
-            } else {
-                echo "invalid buy chocolate";
+            if ($this->model->reduceChocolateAmount($i, $amount) === false) {
                 header("Location: /chocolate/buy/$i/");
                 die();
             }
+            $this->transactionModel->addTransaction($_SESSION['id'], $i, $amount, $address);
+
+            require_once VIEW_PATH . "ChocolateView.class.php";
+            $view = new ChocolateView();
+            $view->title = "A-Chong-co | Buy Success";
+            $view->chocolate = $this->model->selectByPk($i);
+            $view->amount = $amount;
+            $view->content_file = CHOCOLATE_PATH . 'updatesuccess.php';
+            echo $view->render('master.php');
+
         } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Buy";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'buy.php';
-            echo $view->render('master.php');
-        }
-    }
-
-    public function buysuccess($i)
-    {
-        $this->authenticate();
-        $this->filterMethod(array('GET'));
-        $this->authorize($superuser = false);
-
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Buy";
-            $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'buysuccess.php';
+            $view->content_file = CHOCOLATE_PATH . 'update.php';
             echo $view->render('master.php');
         }
     }
@@ -124,13 +107,15 @@ class ChocolateController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
-            echo $amount;
-            // TODO check input
-            $validInput = true;
-            if ($validInput) {
-                // TODO add chocolate on restock
-                header("Location: /chocolate/restocksuccess/$i/");
-                die();
+            if ($amount) {
+                $this->model->addChocolateAmount($i, $amount);
+
+                require_once VIEW_PATH . "ChocolateView.class.php";
+                $view = new ChocolateView();
+                $view->title = "A-Chong-co | Add Stock";
+                $view->chocolate = $this->model->selectByPk($i);
+                $view->content_file = CHOCOLATE_PATH . 'updatesuccess.php';
+                echo $view->render('master.php');
             } else {
                 echo "invalid add stock";
                 header("Location: /chocolate/restock/$i/");
@@ -141,23 +126,7 @@ class ChocolateController extends Controller
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add Stock";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'restock.php';
-            echo $view->render('master.php');
-        }
-    }
-
-    public function restocksuccess($i)
-    {
-        $this->authenticate();
-        $this->filterMethod(array('GET'));
-        $this->authorize($superuser = true);
-
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Add Stock";
-            $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'restocksuccess.php';
+            $view->content_file = CHOCOLATE_PATH . 'update.php';
             echo $view->render('master.php');
         }
     }

@@ -27,9 +27,9 @@ class UserModel extends Model
         return $this->db->getOne($sql);
     }
 
-    public function exists($username, $password, $email)
+    public function exists($username, $email)
     {
-        // TODO:
-        return false;
+        $sql = "SELECT COUNT(UserID) FROM $this->table WHERE '$username'=`Username` AND '$email'=`Email`";
+        return ($this->db->getOne($sql)) > 0;
     }
 }

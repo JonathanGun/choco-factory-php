@@ -26,7 +26,8 @@ foreach ($this->transactions as $transaction) {
       <td>$Date</td>
       <td>$Address</td>
     </tr>";
-    //TODO CSS nya rapihin, Date sm time dipisah
+    // TODO CSS nya rapihin, Date sm time dipisah
+    // TODO pagination
 }
 ?>
     </table>

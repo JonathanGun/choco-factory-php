@@ -8,6 +8,10 @@ textarea {
   box-sizing: border-box;
 }
 
+textarea {
+  resize: none;
+}
+
 input[type="file"] {
   background-color: #fff;
 }
@@ -18,8 +22,22 @@ input[type="file"] {
 }
 
 .form-group input,
+.form-group button,
 .form-group textarea {
   width: 100%;
+}
+
+.two-button {
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-2);
+}
+
+@media (max-width: 992px) {
+  .two-button {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .btn {

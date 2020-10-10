@@ -8,10 +8,9 @@ echo $view->render('navbar.php');
   <?php
 foreach ($this->chocolates as $chocolate) {
     extract($chocolate);
-    $i = $ChocoID % 3;
     echo "<div class='col-xs-12'>
         <a class='card horizontal' href='/chocolate/view/$ChocoID/'>
-          <img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$ChocoID'>
+          <img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>
           <div class='card-body'>
             <p class='card-title'>$Name</p>
             <p class='card-text'>Amount sold: $Sold</p>

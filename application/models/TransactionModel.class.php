@@ -16,4 +16,9 @@ class TransactionModel extends Model
         $transactions = $this->db->getAll($sql);
         return $transactions;
     }
+
+    public function addTransaction($userid, $chocoid, $amount, $address)
+    {
+        $this->insert(array("UserID" => $userid, "ChocoID" => $chocoid, "Amount" => $amount, "Address" => $address));
+    }
 }

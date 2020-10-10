@@ -56,7 +56,6 @@ class Framework
         define("TEMPLATE_PATH", PUBLIC_PATH . "templates" . DS);
         define("CSS_PATH", PUBLIC_PATH . "css" . DS);
         define("JS_PATH", PUBLIC_PATH . "js" . DS);
-        define("IMAGE_PATH", PUBLIC_PATH . "images" . DS);
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
         define("HTML_PATH", PUBLIC_PATH . "html" . DS);
         define("CHOCOLATE_PATH", HTML_PATH . "chocolate" . DS);

@@ -9,10 +9,11 @@ CREATE TABLE `Chocolate` (
 	`Name` VARCHAR(128) NOT NULL,
 	`Stock` INT NOT NULL DEFAULT '0',
 	`Sold` INT NOT NULL DEFAULT '0',
-	`Price` FLOAT,
+	`Price` INT,
 	`Description` VARCHAR(4096),
 	`DateAdded` DATETIME,
 	`LastModified` DATETIME,
+	`ImageName` VARCHAR(150),
 	UNIQUE KEY `ChocoIDIndex` (`ChocoID`) USING HASH,
 	PRIMARY KEY (`ChocoID`)
 );
@@ -28,6 +29,7 @@ CREATE TRIGGER updateChocolateBeforeInsert
 BEFORE INSERT ON `Chocolate`
 FOR EACH ROW
 BEGIN
+	SET NEW.ImageName=CONCAT('choco',IFNULL((SELECT MAX(ChocoID) FROM `Chocolate`), 0) + 1,'.jpg');
 	SET NEW.DateAdded=NOW();
 	SET NEW.LastModified=NEW.DateAdded;
 END$$
@@ -68,10 +70,18 @@ CREATE TABLE `Transaction` (
 	`Amount` INT NOT NULL,
 	`Date` DATETIME,
 	`Address` VARCHAR(512) NOT NULL,
-	PRIMARY KEY (`UserID`,`ChocoID`, `Date`),
 	FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`),
 	FOREIGN KEY (`ChocoID`) REFERENCES `Chocolate`(`ChocoID`)
 );
+
+DELIMITER $$
+CREATE TRIGGER updateTransactionBeforeInsert
+BEFORE INSERT ON `Transaction`
+FOR EACH ROW
+BEGIN
+	SET NEW.Date=NOW();
+END$$
+DELIMITER ;
 
 INSERT INTO `Chocolate` (`Name`,`Stock`,`Price`,`DateAdded`,`Sold`) VALUES ("Yvette Gill",106,"20292","2020-05-21 05:53:09",143),("Rhoda C. Baker",98,"21977","2019-11-04 08:00:57",112),("Rinah Dunlap",91,"10844","2020-02-09 19:44:48",245),("Jaquelyn Stout",102,"9819","2020-06-25 14:26:36",294),("Ralph U. Finley",78,"19436","2020-01-11 15:25:39",290),("Belle Reid",107,"32710","2020-05-29 05:35:57",215),("Reed Hurley",105,"32583","2019-10-31 11:33:06",77),("Wylie Pickett",75,"31025","2020-09-17 14:55:23",279),("Hoyt Clements",5,"31300","2020-04-08 05:13:24",58),("Virginia K. Bishop",81,"12198","2020-08-09 04:02:02",296);
 INSERT INTO `Chocolate` (`Name`,`Stock`,`Price`,`DateAdded`,`Sold`) VALUES ("William K. Kemp",122,"34102","2020-04-23 23:29:24",267),("Kieran Day",68,"37518","2019-12-20 21:24:34",275),("Jada Odom",124,"5450","2020-09-10 14:13:10",67),("Rae Q. Rocha",115,"31623","2020-07-14 06:16:57",260),("Ayanna S. Peters",66,"25197","2020-07-23 08:12:51",192),("Madison Snyder",97,"26567","2020-04-06 01:28:40",280),("Alexandra B. Downs",65,"25447","2019-11-09 14:02:46",280),("Shelby Schultz",78,"29164","2020-02-18 17:46:44",218),("Thor Sweeney",119,"9567","2020-09-08 05:27:40",23),("Kirk Z. Frank",13,"16143","2020-07-23 15:57:28",8);
