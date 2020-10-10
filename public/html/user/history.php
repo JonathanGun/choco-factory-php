@@ -4,11 +4,10 @@ $view->items = array();
 echo $view->render('navbar.php');
 ?>
 <div class="container">
-  <div class="row">
-    <h2 class='col-xs-12 mb-2 mt-2'>Transaction History</h2>
+    <h2 class='full-width mb-2'>Transaction History</h2>
     <table>
       <tr>
-        <th>Chocolate Name</th>
+        <th>Choco Name</th>
         <th>Amount</th>
         <th>Total Price</th>
         <th>Date</th>
@@ -18,18 +17,19 @@ echo $view->render('navbar.php');
       <?php
 foreach ($this->transactions as $transaction) {
     extract($transaction);
+    $datetime = new DateTime($Date);
+    $date = $datetime->format('Y-m-d');
+    $time = $datetime->format('H:i:s');
     echo "<tr>
       <td><a href='/chocolate/view/$ChocoID/'>$Name</a></td>
       <td>$Amount</td>
       <td>" . ($Price * $Amount) . "</td>
-      <td>$Date</td>
-      <td>$Date</td>
+      <td>$date</td>
+      <td>$time</td>
       <td>$Address</td>
     </tr>";
-    // TODO CSS nya rapihin, Date sm time dipisah
     // TODO pagination
 }
 ?>
     </table>
-  </div>
 </div>

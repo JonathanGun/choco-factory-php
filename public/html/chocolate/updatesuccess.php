@@ -12,6 +12,7 @@ echo $view->render('navbar.php');
     <div class="col-xs-12 col-sm-3">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
     </div>
+    <!-- TODO ajax remaining stock -->
     <div class="col-xs-12 col-sm-9">
       <?="
       <p class='mb-1'>Chocolate Name: $Name</p>
@@ -26,7 +27,7 @@ echo $view->render('navbar.php');
       <a class="btn float-right mt-5 mb-3 btn-secondary" href="/">Return to dashboard</a>
     </div>
     <div class="col-xs-12 col-md-3">
-      <a class="btn float-right mt-5 mb-3 full-width" href="/chocolate/<?=$_SESSION["issuperuser"] ? 'restock' : 'buy'?>/<?=$ChocoID?>/"><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?> again</a>
+      <a class="btn float-right mt-5 mb-3 full-width" href="/chocolate/<?=$_SESSION["issuperuser"] ? 'restock' : 'buy'?>/<?=$ChocoID?>/"><?=$_SESSION["issuperuser"] ? 'Add More' : 'Buy Again'?></a>
     </div>
   </div>
 </div>

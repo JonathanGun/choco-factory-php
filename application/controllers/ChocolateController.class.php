@@ -34,7 +34,7 @@ class ChocolateController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
             $id = $this->model->insert(array("Name" => $name, "Price" => $price, "Description" => $description, "Stock" => $stock));
-            // TODO save uploaded image
+            $this->saveImage($id);
             if ($id) {
                 header("Location: /chocolate/view/$id");
                 die();
@@ -50,6 +50,30 @@ class ChocolateController extends Controller
             $view->content_file = CHOCOLATE_PATH . 'create.php';
             echo $view->render('master.php');
         }
+    }
+
+    private function saveImage($id)
+    {
+        print_r($_FILES);
+        if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+            file_put_contents("log.txt", "Upload failed with error code " . $_FILES['file']['error']);
+            die();
+        }
+
+        $info = getimagesize($_FILES['image']['tmp_name']);
+        if ($info === false) {
+            file_put_contents("log.txt", "Unable to determine image type of uploaded file");
+            die();
+        }
+
+        if (($info[2] !== IMAGETYPE_GIF) && ($info[2] !== IMAGETYPE_JPEG) && ($info[2] !== IMAGETYPE_PNG)) {
+            file_put_contents("log.txt", "Not a gif/jpeg/png");
+            die();
+        }
+
+        $info = pathinfo($_FILES['image']['name']);
+        $target = UPLOAD_PATH . "choco$id.jpg";
+        move_uploaded_file($_FILES['image']['tmp_name'], $target);
     }
 
     public function view($i)

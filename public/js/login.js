@@ -34,3 +34,5 @@ function validateForm(){
     }
     return false;
 }
+
+// TODO AJAX cek username dan email unik

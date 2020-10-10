@@ -12,6 +12,7 @@ echo $view->render('navbar.php');
     <div class="col-xs-12 col-sm-3">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
     </div>
+    <!-- TODO ajax remaining stock -->
     <div class="col-xs-12 col-sm-9">
       <?="
       <p class='mb-1'>Amount sold: $Sold</p>

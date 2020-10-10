@@ -36,7 +36,7 @@ class ChocolateModel extends Model
     public function addChocolateAmount($id, $n)
     {
         $choco = $this->selectByPk($id);
-        $this->updateChocolateAmount($id, $choco["Stock"] + $n);
+        $this->updateChocolateAmount($id, $choco["Stock"] + $n, $choco["Sold"]);
     }
 
     public function reduceChocolateAmount($id, $n)
@@ -45,12 +45,12 @@ class ChocolateModel extends Model
         if ($choco["Stock"] < $n) {
             return false;
         } else {
-            $this->updateChocolateAmount($id, $choco["Stock"] - $n);
+            $this->updateChocolateAmount($id, $choco["Stock"] - $n, $choco["Sold"] + $n);
             return true;
         }
     }
-    public function updateChocolateAmount($id, $stock)
+    public function updateChocolateAmount($id, $stock, $sold)
     {
-        $this->update(array("ChocoID" => $id, "Stock" => $stock));
+        $this->update(array("ChocoID" => $id, "Stock" => $stock, "Sold" => $sold));
     }
 }

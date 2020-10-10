@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/card.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/form.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/table.css" />
     <title><?=$this->title ?? 'A-Chong-co'?></title>
   </head>
 

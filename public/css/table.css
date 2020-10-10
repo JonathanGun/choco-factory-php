@@ -1,0 +1,28 @@
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+th {
+  background: var(--first-color);
+  color: white;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+td,
+th {
+  padding: var(--mb-2);
+  border: 1px solid #ccc;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

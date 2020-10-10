@@ -7,7 +7,7 @@
  */
 class Mysql
 {
-    protected $conn = false; //DB connection resources
+    public $conn = false; //DB connection resources
     protected $sql; //sql statement
     /**
      * Constructor, to connect to database, select database and set charset
