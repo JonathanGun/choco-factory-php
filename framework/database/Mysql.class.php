@@ -46,7 +46,7 @@ class Mysql
         $this->sql = $sql;
         // Write SQL statement into log
         $str = $sql . "  [" . date("Y-m-d H:i:s") . "]" . PHP_EOL;
-        file_put_contents("log.txt", $str, FILE_APPEND);
+        file_put_contents("log.query.txt", $str, FILE_APPEND);
         $result = mysqli_query($this->conn, $this->sql);
         if (!$result) {
             die($this->errno() . ':' . $this->error() . '<br />Error SQL statement is ' . $this->sql . '<br />');

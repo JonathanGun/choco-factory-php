@@ -8,8 +8,12 @@ class Framework
         session_start();
 
         set_error_handler(function ($severity, $message, $file, $line) {
+            $error_msg = $message . "\nFile: " . $file . "\nLine: " . $line;
+            file_put_contents("log.txt", $error_msg, FILE_APPEND);
             if (PRODUCTION) {
                 throw new \ErrorException($message, $severity, $severity, $file, $line);
+            } else {
+                echo '<h3>' . str_replace("\n", "</h3><h3>", $error_msg) . '</h3>';
             }
         });
 

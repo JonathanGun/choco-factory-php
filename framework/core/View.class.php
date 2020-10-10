@@ -38,6 +38,6 @@ class View
     }
     public function __get($k)
     {
-        return $this->properties[$k];
+        return (($this->properties[$k]) ?? '');
     }
 }

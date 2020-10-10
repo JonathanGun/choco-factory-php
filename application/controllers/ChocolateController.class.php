@@ -29,7 +29,7 @@ class ChocolateController extends Controller
     {
         $this->authenticate();
         $this->filterMethod(array('POST', 'GET'));
-        // TODO hanya super user yang bisa
+        $this->authorize($superuser = true);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
@@ -72,8 +72,7 @@ class ChocolateController extends Controller
     {
         $this->authenticate();
         $this->filterMethod(array('POST', 'GET'));
-
-        // TODO hanya user biasa yang bisa
+        $this->authorize($superuser = false);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
@@ -96,7 +95,6 @@ class ChocolateController extends Controller
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Buy";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'buy.php';
             echo $view->render('master.php');
         }
@@ -106,14 +104,13 @@ class ChocolateController extends Controller
     {
         $this->authenticate();
         $this->filterMethod(array('GET'));
-        // TODO hanya user biasa yang bisa
+        $this->authorize($superuser = false);
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Buy";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'buysuccess.php';
             echo $view->render('master.php');
         }
@@ -123,7 +120,7 @@ class ChocolateController extends Controller
     {
         $this->authenticate();
         $this->filterMethod(array('POST', 'GET'));
-        // TODO hanya super user yang bisa
+        $this->authorize($superuser = true);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
@@ -144,7 +141,6 @@ class ChocolateController extends Controller
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add Stock";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'restock.php';
             echo $view->render('master.php');
         }
@@ -154,14 +150,13 @@ class ChocolateController extends Controller
     {
         $this->authenticate();
         $this->filterMethod(array('GET'));
-        // TODO hanya super user yang bisa
+        $this->authorize($superuser = true);
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add Stock";
             $view->chocolate = $this->model->selectByPk($i);
-            $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'restocksuccess.php';
             echo $view->render('master.php');
         }

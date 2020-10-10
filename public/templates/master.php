@@ -13,10 +13,22 @@
     <link rel="stylesheet" type="text/css" href="/public/css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/card.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/form.css" />
-    <title><?=$this->title?></title>
+    <title><?=$this->title ?? 'A-Chong-co'?></title>
   </head>
 
   <body>
-    <?php include $this->content_file?>
+    <?php
+if ($this->content_file) {
+    include $this->content_file;
+} else {
+    echo "<div class='container'>";
+    if ($this->content) {
+        echo $this->content;
+    } else {
+        include ERROR_PATH . '500.php';
+    }
+    echo '<a class="btn float-right mt-5 mb-3" href="/">Return to dashboard</a>';
+    echo "</div>";
+}?>
   </body>
 </html>

@@ -6,14 +6,13 @@ echo $view->render('navbar.php');
 
 <div class="container bg-white">
   <?php
-$id = $this->choco_id;
-$i = $id % 3;
 extract($this->properties["chocolate"]);
+$i = $ChocoID % 3;
 echo "<h2 class='pt-3 pb-3'>Buy Success!</h2>";
 ?>
-  <form action='/chocolate/buy/<?php echo $id ?>/' method="POST" class="row">
+  <form action='/chocolate/buy/<?php echo $ChocoID ?>/' method="POST" class="row">
     <div class="col-xs-12 col-sm-3">
-      <?php echo "<img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$id'>"; ?>
+      <?php echo "<img src='/public/images/choco$i.jpg' class='card-img' alt='coklat$ChocoID'>"; ?>
     </div>
     <div class="col-xs-12 col-sm-9">
       <?php echo "
@@ -26,7 +25,7 @@ echo "<h2 class='pt-3 pb-3'>Buy Success!</h2>";
       " ?>
       <div class="row">
         <div class="col-xs-4 pl-2 pr-2">
-          <p class="mb-1">Amount to Buy:</p>
+          <p class="mb-1">Amount Bought:</p>
           <div class="card horizontal">
             <p class="card-item">-</p>
             <p class="card-item fill">7</p>
@@ -42,7 +41,7 @@ echo "<h2 class='pt-3 pb-3'>Buy Success!</h2>";
       </div>
     </div>
     <div class="col-xs-12">
-      <a class="btn float-right mt-5 mb-3 btn-secondary" href="/chocolate/view/<?php echo $id ?>/">Back</a>
+      <a class="btn float-right mt-5 mb-3 btn-secondary" href="/chocolate/view/<?php echo $ChocoID ?>/">Back</a>
     </div>
   </form>
 </div>

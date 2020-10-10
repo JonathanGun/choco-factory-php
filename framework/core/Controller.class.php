@@ -34,6 +34,14 @@ class Controller
         return false;
     }
 
+    public function authorize($superuser)
+    {
+        if ($_SESSION["issuperuser"] !== $superuser) {
+            include ERROR_PATH . '401.php';
+            die();
+        }
+    }
+
     public function filterMethod($allowedMethods)
     {
         if (!in_array($_SERVER['REQUEST_METHOD'], $allowedMethods)) {
@@ -51,7 +59,7 @@ class Controller
         $user = $this->userModel->selectByPk($id);
         $_SESSION["loggedin"] = true;
         $_SESSION["id"] = $id;
-        $_SESSION["issuperuser"] = $user["IsSuperuser"];
+        $_SESSION["issuperuser"] = filter_var($user["IsSuperuser"], FILTER_VALIDATE_BOOLEAN);
         $_SESSION["username"] = $user["Username"];
         setcookie('loginfo', $sha1, time() + 60 * 60 * 24, '/'); // 1 day expire
     }
