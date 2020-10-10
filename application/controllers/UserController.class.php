@@ -10,22 +10,33 @@ class UserController extends Controller
 
     public function history()
     {
-        if ($this->checkCredential()) {
-            require_once VIEW_PATH . "UserView.class.php";
-            $view = new UserView();
-            $view->title = "A-Chong-co | History";
-            $view->transactions = $this->transactionModel->getTransactions($_SESSION['id'], 10);
-            $view->content_file = USER_PATH . 'history.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
-        }
+        $this->authenticate();
+        $this->filterMethod(array('GET'));
+
+        require_once VIEW_PATH . "UserView.class.php";
+        $view = new UserView();
+        $view->title = "A-Chong-co | History";
+        $view->transactions = $this->transactionModel->getTransactions($_SESSION['id'], 10);
+        $view->content_file = USER_PATH . 'history.php';
+        echo $view->render('master.php');
     }
 
-    public function login()
+    public function logout()
     {
         $this->logoutUtil();
+        header('Location: /user/login/');
+        die();
+    }
+
+    public function login($errorMsg = '')
+    {
+        if ($this->authenticateUtil()) {
+            header('Location: /');
+            die();
+        }
+
+        $this->filterMethod(array('POST', 'GET'));
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
             if ($username && $password) {
@@ -35,20 +46,34 @@ class UserController extends Controller
                     $this->loginUtil($id, $sha1);
                     header('Location: /');
                     die();
+                } else {
+                    echo "invalid login!";
+                    header('Location: /user/login/');
+                    die();
                 }
+            } else {
+                echo "login info cant be empty";
+                header('Location: /user/login/');
+                die();
             }
+        } else {
+            require_once VIEW_PATH . "UserView.class.php";
+            $view = new UserView();
+            $view->title = "A-Chong-co | Login";
+            $view->content_file = USER_PATH . 'login.php';
+            echo $view->render('master.php');
         }
-        // GET or invalid POST (redirect to login)
-        require_once VIEW_PATH . "UserView.class.php";
-        $view = new UserView();
-        $view->title = "A-Chong-co | Login";
-        $view->content_file = USER_PATH . 'login.php';
-        echo $view->render('master.inc');
     }
 
     public function register()
     {
-        $this->logoutUtil();
+        if ($this->authenticateUtil()) {
+            header('Location: /');
+            die();
+        }
+
+        $this->filterMethod(array('POST', 'GET'));
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
             $unique = !$this->model->exists($username, $password, $email);
@@ -58,13 +83,17 @@ class UserController extends Controller
                 $this->loginUtil($id, $sha1);
                 header('Location: /');
                 die();
+            } else {
+                echo "invalid register!";
+                header('Location: /user/register/');
+                die();
             }
+        } else {
+            require_once VIEW_PATH . "UserView.class.php";
+            $view = new UserView();
+            $view->title = "A-Chong-co | Register";
+            $view->content_file = USER_PATH . 'register.php';
+            echo $view->render('master.php');
         }
-        // GET or invalid POST (redirect to register)
-        require_once VIEW_PATH . "UserView.class.php";
-        $view = new UserView();
-        $view->title = "A-Chong-co | Register";
-        $view->content_file = USER_PATH . 'register.php';
-        echo $view->render('master.inc');
     }
 }

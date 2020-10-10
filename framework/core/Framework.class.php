@@ -4,24 +4,33 @@ class Framework
 
     public static function run()
     {
-        // Initialization
         self::init();
-
-        // Start session
         session_start();
 
-        // Routing
-        $request = new Request();
-        Router::parse($request->url, $request);
+        set_error_handler(function ($severity, $message, $file, $line) {
+            if (PRODUCTION) {
+                throw new \ErrorException($message, $severity, $severity, $file, $line);
+            }
+        });
 
-        // Load controller
-        $name = $request->controller . "Controller";
-        $file = CONTROLLER_PATH . $name . '.class.php';
-        require $file;
-        $controller = new $name();
+        try {
+            // Routing
+            $request = new Request();
+            Router::parse($request->url, $request);
 
-        // Dispatch
-        call_user_func_array([$controller, $request->action], $request->params);
+            // Load controller
+            $name = $request->controller . "Controller";
+            $file = CONTROLLER_PATH . $name . '.class.php';
+            require $file;
+            $controller = new $name();
+
+            // Dispatch
+            call_user_func_array([$controller, $request->action], $request->params);
+        } catch (Exception $e) {
+            include ERROR_PATH . '404.php';
+        } finally {
+            restore_error_handler();
+        }
     }
 
     private static function init()
@@ -48,10 +57,10 @@ class Framework
         define("HTML_PATH", PUBLIC_PATH . "html" . DS);
         define("CHOCOLATE_PATH", HTML_PATH . "chocolate" . DS);
         define("USER_PATH", HTML_PATH . "user" . DS);
+        define("ERROR_PATH", HTML_PATH . "error" . DS);
 
-        // Define other constants
-        define("LOGIN_COOKIE", 'loginfo');
-        define("SALT", 'anjaytubes');
+        // Load config
+        include CONFIG_PATH . 'config.php';
 
         // Load core classes
         foreach (array(CORE_PATH, DB_PATH) as $dir) {

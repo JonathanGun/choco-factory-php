@@ -1,7 +1,7 @@
 <?php
 $view = new View();
 $view->items = array("History" => "/user/history/");
-echo $view->render('navbar.inc');
+echo $view->render('navbar.php');
 ?>
 
 <div class="container">
@@ -17,7 +17,8 @@ foreach ($this->chocolates as $chocolate) {
             <p class='card-text'>Amount sold: $Sold</p>
             <p class='card-text'>Price: Rp$Price,00</p>
             <p class='card-text'>Amount Remaining: $Stock</p>
-            <p class='card-text'>Description: $Description</p>
+            <p class='card-text'>Description</p>
+            <p class='card-text'>" . ($Description ?? '-') . "</p>
           </div>
         </a>
       </div>";

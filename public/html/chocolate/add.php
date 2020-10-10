@@ -1,7 +1,7 @@
 <?php
 $view = new View();
 $view->items = array("History" => "/user/history/");
-echo $view->render('navbar.inc');
+echo $view->render('navbar.php');
 ?>
 <div class="container">
   <h2 class="mb-5">Add New Chocolate</h2>

@@ -22,5 +22,7 @@
   <a class="text-center btn btn-small mt-5" href="/user/register/">Register new account</a>
 </div>
 <script>
-  // TODO: validasi login field
+  // TODO validasi login field unik
+  // TODO Email memiliki format email standar seperti “example@example.com”.
+  // TODO Username hanya menerima kombinasi alphabet, angka, dan underscore.
 </script>

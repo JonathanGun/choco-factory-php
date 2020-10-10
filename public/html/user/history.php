@@ -1,7 +1,7 @@
 <?php
 $view = new View();
 $view->items = array();
-echo $view->render('navbar.inc');
+echo $view->render('navbar.php');
 ?>
 <div class="container">
   <div class="row">
@@ -19,7 +19,7 @@ echo $view->render('navbar.inc');
 foreach ($this->transactions as $transaction) {
     extract($transaction);
     echo "<tr>
-      <td>$Name</td>
+      <td><a href='/chocolate/view/$ChocoID/'>$Name</a></td>
       <td>$Amount</td>
       <td>" . ($Price * $Amount) . "</td>
       <td>$Date</td>

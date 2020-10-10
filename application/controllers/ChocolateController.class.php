@@ -10,137 +10,160 @@ class ChocolateController extends Controller
 
     public function search()
     {
+        $this->authenticate();
+        $this->filterMethod(array('POST', 'GET'));
+
         $substr = $_POST["choco_search"] ?? '';
-        if ($this->checkCredential()) {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' || $_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Search";
             $view->content_file = CHOCOLATE_PATH . 'search.php';
             $view->chocolates = $this->model->getChocolates($substr);
             // TODO: pagination
-
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 
     public function add()
     {
-        if ($this->checkCredential()) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                extract($_POST);
-                $id = $this->model->insert(array("Name" => $name, "Price" => $price, "Description" => $description, "Stock" => $stock));
-                echo $id;
-                if ($id) {
-                    header("Location: /chocolate/view/$id");
-                    die();
-                }
+        $this->authenticate();
+        $this->filterMethod(array('POST', 'GET'));
+        // TODO hanya super user yang bisa
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            extract($_POST);
+            $id = $this->model->insert(array("Name" => $name, "Price" => $price, "Description" => $description, "Stock" => $stock));
+            echo $id;
+            if ($id) {
+                header("Location: /chocolate/view/$id");
+                die();
+            } else {
+                echo "invalid add chocolate";
+                header("Location: /chocolate/add/");
+                die();
             }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add New Chocolate";
             $view->content_file = CHOCOLATE_PATH . 'add.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 
     public function view($i)
     {
-        if ($this->checkCredential()) {
+        $this->authenticate();
+        $this->filterMethod(array('GET'));
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Details";
             $view->chocolate = $this->model->selectByPk($i);
             $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'view.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 
     public function buy($i)
     {
-        if ($this->checkCredential()) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                extract($_POST);
-                echo $amount;
+        $this->authenticate();
+        $this->filterMethod(array('POST', 'GET'));
+
+        // TODO hanya user biasa yang bisa
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            extract($_POST);
+            echo $amount;
+            // TODO check input
+            // TODO enough choco
+            $validInput = true;
+            if ($validInput) {
                 // TODO reduce chocolate on buy
-                // Add to transaction
-                header("Location: /chocolate/buysuccess/$i");
+                // TODO Add to transaction
+                header("Location: /chocolate/buysuccess/$i/");
+                die();
+            } else {
+                echo "invalid buy chocolate";
+                header("Location: /chocolate/buy/$i/");
                 die();
             }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Buy";
             $view->chocolate = $this->model->selectByPk($i);
             $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'buy.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 
     public function buysuccess($i)
     {
-        if ($this->checkCredential()) {
+        $this->authenticate();
+        $this->filterMethod(array('GET'));
+        // TODO hanya user biasa yang bisa
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Buy";
             $view->chocolate = $this->model->selectByPk($i);
             $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'buysuccess.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 
     public function restock($i)
     {
-        if ($this->checkCredential()) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                extract($_POST);
-                echo $amount;
+        $this->authenticate();
+        $this->filterMethod(array('POST', 'GET'));
+        // TODO hanya super user yang bisa
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            extract($_POST);
+            echo $amount;
+            // TODO check input
+            $validInput = true;
+            if ($validInput) {
                 // TODO add chocolate on restock
-                header("Location: /chocolate/restocksuccess/$i");
+                header("Location: /chocolate/restocksuccess/$i/");
+                die();
+            } else {
+                echo "invalid add stock";
+                header("Location: /chocolate/restock/$i/");
                 die();
             }
+        } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add Stock";
             $view->chocolate = $this->model->selectByPk($i);
             $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'restock.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 
     public function restocksuccess($i)
     {
-        if ($this->checkCredential()) {
+        $this->authenticate();
+        $this->filterMethod(array('GET'));
+        // TODO hanya super user yang bisa
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
             $view = new ChocolateView();
             $view->title = "A-Chong-co | Add Stock";
             $view->chocolate = $this->model->selectByPk($i);
             $view->choco_id = $i;
             $view->content_file = CHOCOLATE_PATH . 'restocksuccess.php';
-            echo $view->render('master.inc');
-        } else {
-            header('Location: /user/login/');
-            die();
+            echo $view->render('master.php');
         }
     }
 }

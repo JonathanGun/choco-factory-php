@@ -1,7 +1,7 @@
 <?php
 $view = new View();
 $view->items = array("History" => "/user/history/");
-echo $view->render('navbar.inc');
+echo $view->render('navbar.php');
 ?>
 
 <div class="container bg-white">
@@ -30,7 +30,7 @@ echo "<h2 class='pb-2 pt-2'>$Name</h2>";
     </div>
     <div class="col-xs-2">
       <?php
-echo $_SESSION['id'] == 1 ? //TODO check super user
+echo $_SESSION['issuperuser'] ?
 "<a class='btn full-width mt-5 mb-3' href='/chocolate/restock/$id'>Add Stock</a>"
 :
 "<a class='btn full-width mt-5 mb-3' href='/chocolate/buy/$id'>Buy Now</a>"; ?>

@@ -9,7 +9,7 @@ class TransactionModel extends Model
 
     public function getTransactions($id, $n = 10)
     {
-        $sql = "SELECT Name,Amount,Date,Price,Address FROM `Transaction` JOIN `Chocolate` USING (ChocoID) WHERE `UserID`='$id'";
+        $sql = "SELECT ChocoID,Name,Amount,Date,Price,Address FROM `Transaction` JOIN `Chocolate` USING (ChocoID) WHERE `UserID`='$id' ORDER BY Date DESC";
         if ($n >= 0) {
             $sql = $sql . " LIMIT $n";
         }
