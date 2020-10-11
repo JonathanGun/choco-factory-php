@@ -37,5 +37,5 @@
       </div>
     </div>
   </form>
-  <a class="text-center btn btn-small mt-5" href="/user/login/">Login on existing account</a>
+  <a class="text-center btn btn-small btn-secondary mt-5" href="/user/login/">Login on existing account</a>
 </div>

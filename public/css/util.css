@@ -54,6 +54,18 @@
 
 .bg-white {
   background-color: #fff;
+  padding-bottom: 0;
+  margin-bottom: var(--mb-4);
+}
+
+.bg-white > * {
+  padding-left: var(--mb-2);
+  padding-right: var(--mb-2);
+}
+
+.bg-white > *:first-child {
+  padding-top: var(--mb-3);
+  padding-bottom: var(--mb-3);
 }
 
 .full-width {

@@ -7,7 +7,7 @@ echo $view->render('navbar.php');
 <div class="container bg-white">
   <?php extract($this->properties["chocolate"]);?>
 
-  <h2 class='pt-3 pb-3'><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?> Success! (<?=$this->amount?> pcs)</h2>
+  <h2><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?> Success! (<?=$this->amount?> pcs)</h2>
   <div class="row">
     <div class="col-xs-12 col-sm-3">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>

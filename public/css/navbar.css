@@ -36,7 +36,7 @@
 }
 
 .navbar-submit {
-  padding: 0px 3rem;
+  /* padding: 0px 3rem; */
   margin-right: 3rem;
 }
 
@@ -48,28 +48,29 @@
   }
   .navbar-search > input,
   .navbar-submit {
-    padding: 0.3rem;
+    padding: 0.5rem;
   }
   .navbar * {
-    width: 100%;
-    padding: 0 0;
+    padding: 0;
     margin: 5px;
   }
-  .bg-white {
-    margin-top: 10rem;
+  .container {
+    margin-top: 12rem;
   }
-}
-
-@media (max-width: 992px) {
-  .navbar a:not(:first-child),
-  .navbar p:not(:first-child) {
-    display: none;
+  .navbar {
+    display: inline;
   }
 }
 
 @media (min-width: 992px) {
   .navbar {
     padding: 10px 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .navbar-submit {
+    margin: 0;
   }
 }
 

@@ -141,6 +141,7 @@ class ChocolateController extends Controller
                     'Add Stock',
                     array(
                         'chocolate' => $this->model->selectByPk($i),
+                        "amount" => $amount,
                     )
                 ))->render();
             } else {

@@ -8,7 +8,7 @@ echo $view->render('navbar.php');
 <div class="container bg-white">
   <?php extract($this->properties["chocolate"]);?>
 
-  <h2 class='pt-3 pb-3'><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?></h2>
+  <h2><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?></h2>
   <form action='/chocolate/<?=$_SESSION["issuperuser"] ? 'restock' : 'buy'?>/<?=$ChocoID?>/' method="POST" class="row pb-2">
     <div class="col-xs-12 col-sm-3">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
@@ -48,11 +48,13 @@ echo $view->render('navbar.php');
       <div class="form-label">Address:</div>
       <textarea type="text" class="form-input" placeholder="Full address, example: P.O. Box 670, 6556 Euismod Ave" name="address" required></textarea>
     </div>'?>
-    <div class="col-xs-12 col-md-9">
-      <button class="btn float-right two-button btn-secondary" onclick="location.href='/chocolate/view/<?=$ChocoID?>/';return false;">Cancel</button>
-    </div>
-    <div class="col-xs-12 col-md-3">
-      <button class="btn full-width two-button" type="submit"><?=$_SESSION["issuperuser"] ? 'Add' : 'Buy'?></button>
+    <div class="col-xs-12 row two-button">
+      <div class="col-xs-12 col-sm-9">
+        <button class="btn float-right btn-secondary" onclick="location.href='/chocolate/view/<?=$ChocoID?>/';return false;">Cancel</button>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <button class="btn full-width" type="submit"><?=$_SESSION["issuperuser"] ? 'Add' : 'Buy'?></button>
+      </div>
     </div>
   </form>
 </div>

@@ -7,7 +7,7 @@ echo $view->render('navbar.php');
 <div class="container bg-white">
   <?php extract($this->properties["chocolate"]);?>
 
-  <h2 class='pb-2 pt-2'><?=$Name?></h2>
+  <h2><?=$Name?></h2>
   <div class="row">
     <div class="col-xs-12 col-sm-3">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
@@ -23,15 +23,17 @@ echo $view->render('navbar.php');
       "
 ?>
     </div>
-    <div class="col-xs-10">
-      <a class="btn float-right mt-5 mb-3 btn-secondary" href="/">Back</a>
-    </div>
-    <div class="col-xs-2">
-      <?php
+    <div class="two-button row col-xs-12">
+      <div class="col-xs-12 col-sm-9">
+        <a class="btn float-right btn-secondary" href="/">Return to dashboard</a>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <?php
 echo $_SESSION['issuperuser'] ?
-"<a class='btn full-width mt-5 mb-3' href='/chocolate/restock/$ChocoID'>Add Stock</a>"
+"<a class='btn full-width' href='/chocolate/restock/$ChocoID'>Add Stock</a>"
 :
-"<a class='btn full-width mt-5 mb-3' href='/chocolate/buy/$ChocoID'>Buy Now</a>"; ?>
+"<a class='btn full-width' href='/chocolate/buy/$ChocoID'>Buy Now</a>"; ?>
+      </div>
     </div>
   </div>
 </div>

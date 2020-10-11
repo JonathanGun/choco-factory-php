@@ -38,16 +38,21 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.two-button {
-  margin-top: var(--mb-2);
+.two-button > * {
+  margin-top: var(--mb-6);
   margin-bottom: var(--mb-2);
 }
 
-@media (max-width: 992px) {
-  .two-button {
+@media (max-width: 768px) {
+  .two-button * {
     width: 100%;
-    margin-top: 0;
+  }
+  .two-button > *:first-child {
+    margin-top: var(--mb-6);
     margin-bottom: 0;
+  }
+  .two-button > *:last-child {
+    margin-top: 0;
   }
 }
 
