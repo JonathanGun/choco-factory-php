@@ -68,6 +68,19 @@ class UserController extends Controller
         }
     }
 
+    public function checkUnique($string)
+    {
+        $this->filterMethod(array('GET'));
+        $arr = explode(',', $string);
+        if (count($arr) === 2) {
+            $username = $arr[0];
+            $email = str_replace(':', '.', $arr[1]);
+            echo (!$this->model->exists($username, $email)) ? 'true' : 'false';
+        } else {
+            echo 'false';
+        }
+    }
+
     public function register()
     {
         // if already logged in

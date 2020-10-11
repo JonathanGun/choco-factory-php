@@ -2,6 +2,9 @@
 
 <div class="container bg-white pt-3 pb-1">
   <h1 class="jumbotron">A-Chong-co Choco Factory</h1>
+  <div class="row mb-3">
+    <p class="col-xs-12" id="errorUsername"></p>
+  </div>
   <form onsubmit="return validateForm();" href="/user/login/" method="POST">
     <div class="form-group row">
       <div class="col-xs-12 form-label">Username</div>
@@ -16,10 +19,7 @@
       </div>
     </div>
     <div class="form-group row mt-6">
-      <p class="col-xs-12" id="errorUsername"></p>
-    </div>
-    <div class="form-group row mt-6">
-      <div class="col-xs-12">
+      <div class="col-xs-12 mt-6">
         <button type="submit" class="btn">Login</button>
       </div>
     </div>

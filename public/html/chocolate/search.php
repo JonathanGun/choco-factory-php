@@ -7,7 +7,7 @@ $pages = ceil($this->numRows / CHOCOLATES_PER_PAGE);
 $js_array = json_encode($this->chocolates);
 echo "<script>var chocolates = $js_array;var chocolate_per_page = " . CHOCOLATES_PER_PAGE . ";var current_page = 1;var pages=$pages;</script>";
 ?>
-<script src="/public/js/ajax.js"></script>
+<script src="/public/js/pagination.js"></script>
 
 <div class="container pb-3">
     <div class="row mb-4">
