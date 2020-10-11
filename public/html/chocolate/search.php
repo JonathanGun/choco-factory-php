@@ -6,6 +6,8 @@ echo $view->render('navbar.php');
 $pages = ceil($this->numRows / CHOCOLATES_PER_PAGE);
 $js_array = json_encode($this->chocolates);
 echo "<script>var chocolates = $js_array;var chocolate_per_page = " . CHOCOLATES_PER_PAGE . ";var current_page = 1;var pages=$pages;</script>";
+
+require_once VIEW_PATH . 'PaginationView.class.php';
 ?>
 <script src="/public/js/pagination.js"></script>
 
@@ -38,15 +40,5 @@ for ($i = 1; $i <= min(CHOCOLATES_PER_PAGE, count($this->chocolates)); $i++) {
 }
 ?>
   </div>
-  <div class="flex mt-5 mb-2" id="pagination">
-  <a class='btn btn-secondary text-center' onclick='updateSearch("-")'>Prev</a>
-     <?php
-for ($i = 1; $i <= $pages; $i++) {
-    echo "<a class='btn btn-secondary text-center " . ($i == $this->page ? 'bold' : '') . "' onclick='updateSearch($i);'>$i</a>";
-}?>
-  <a class='btn btn-secondary text-center' onclick='updateSearch("+")'>Next</a>
-  </div>
-  <div class="row">
-    <a type="button" class="col-xs-12 btn float-right" href="/">Return to dashboard</a>
-  </div>
+  <?=(new PaginationView($pages, 'updateSearch'))->render();?>
 </div>
