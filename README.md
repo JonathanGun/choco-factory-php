@@ -91,71 +91,107 @@ htdocs
 
 ### Register
 
-Register new account
-![](screenshot/register.jpg)
+> To register a new account
+
+![](screenshot/register1-min.jpg)
+Valid example
+![](screenshot/register2-min.jpg)
+Invalid example
+![](screenshot/register3-min.jpg)
+Not unique example (username-email pair already taken)
 
 ### Login
 
-Must login before entering website
-![](screenshot/login.jpg)
+> Must login before entering website
+
+![](screenshot/login1-min.jpg)
 
 ### Search by name
 
-using search bar on top (optional; can choose on dashboard)
+> using search bar on top
+
+![](screenshot/search1-min.jpg)
+with pagination:
+![](screenshot/search_pagination1-min.jpg)
+![](screenshot/search_pagination2-min.jpg)
 
 ### Chocolate Detail
 
-Click on a chocolate card to see detail
+> Click on a chocolate card to see detail
+
+![](screenshot/detail_u1-min.jpg)
+viewed as normal user
+![](screenshot/detail_su1-min.jpg)
+viewed as super user
 
 ### Buy Chocolate
 
-Click `Buy Now` on Chocolate Detail page (as user)
+> Click `Buy Now` on Chocolate Detail page (as normal user)
 
-Enter amount and address
+![](screenshot/buy1-min.jpg)
 
-Click `Buy` to buy, or `Cancel` to cancel
+> Click `Buy` to buy, or `Cancel` to cancel
+
+![](screenshot/buy2-min.jpg)
 
 ### Add Chocolate Stock
 
-Click `Add Stock` on Chocolate Detail page (as superuser)
+> Click `Add Stock` on Chocolate Detail page (as superuser)
 
-Enter amount
+![](screenshot/add_stock1-min.jpg)
 
-Click `Add` to add stock, or `Cancel` to cancel
+> Click `Add` to add stock, or `Cancel` to cancel
+
+![](screenshot/add_stock2-min.jpg)
 
 ### Transaction History
 
-Click `History` on navigation bar (on top of the page) (as user)
+> Click `History` on navigation bar (on top of the page) (as user)
+
+![](screenshot/history1-min.jpg)
+![](screenshot/history_pagination1-min.jpg)
+with pagination
 
 ### Add New Chocolate
 
-Click `Add New chocolate` on navigation bar (on top of the page) (as superuser)
+> Click `Add New Choco` on navigation bar (on top of the page) (as superuser)
 
-Enter details
+![](screenshot/add_new_choco1-min.jpg)
 
-Click `Add` to add new chocolate, or `Cancel` to cancel
+> Click `Add` to add new chocolate, or `Cancel` to cancel
+
+will redirect to that chocolate details page after succesful adding new choco
 
 ## Bonus Features
 
 ### Cookie Access Token
 
-Using SHA-1 of salted username+password+secret
+> Cookie is not plain username-password pair anymore
 
-Set Cookie expired time (1 day)
+![](screenshot/cookie1-min.jpg)
+using SHA-1 of salted username+password+secret
 
 ### Real Time Stock
 
-check again on database, not only on frontend
+> will check again on database, not only on frontend
 
-WIP ajax on buy chocolate
+![](screenshot/realtime1-min.jpg)
+before
+![](screenshot/realtime2-min.jpg)
+after
 
 ### Responsive Layout
 
-utilising CSS Grid, mimicking Bootstrap Grid Layout (`row` class)
+> utilising CSS Grid, mimicking Bootstrap Grid Layout (`row` class)
+
+already shown above
 
 ### Successful Add/Buy Feedback
 
-so the user know if it is succesful
+> So the user know if it is successful
+
+![](screenshot/buy2-min.jpg)
+![](screenshot/add_stock2-min.jpg)
 
 ## Pembagian Tugas
 

@@ -11,7 +11,7 @@
     <div class="form-group row">
       <div class="col-xs-12 form-label">Username</div>
       <div class="col-xs-12">
-        <input type="text" class="form-input" name="username" placeholder="A-Chong" onchange="validateUsername(this);" id="username">
+        <input type="text" class="form-input" name="username" placeholder="AChong" onchange="validateUsername(this);" id="username">
       </div>
     </div>
     <div class="form-group row">
