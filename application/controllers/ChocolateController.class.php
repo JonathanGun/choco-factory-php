@@ -14,12 +14,15 @@ class ChocolateController extends Controller
         $this->authenticate();
         $this->filterMethod(array('GET'));
 
+        $numRows = $this->model->numRows("Name LIKE '%$search_query%'");
         echo (new ChocolateView(
             'search.php',
             'Search',
             array(
-                "chocolates" => $this->model->getChocolates(urldecode($search_query)),
+                "chocolates" => $this->model->getChocolates(urldecode($search_query), 0, $numRows), // retrieve all, pagination on client side
                 "queryString" => $search_query,
+                "numRows" => $numRows,
+                "page" => 1,
             )
         ))->render();
     }

@@ -50,6 +50,10 @@
   text-align: right;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .float-right {
   float: right;
 }

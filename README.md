@@ -187,22 +187,25 @@ so the user know if it is succesful
 
 ### References
 
-Basic PHP knowledge
+Basic PHP Knowledge
 
-- https://www.javatpoint.com/xampp
+- XAMPP: https://www.javatpoint.com/xampp
+- MySQL: https://www.tutorialspoint.com/mysql/index.htm
 
 Creating Custom Framework
 
-- https://www.codeproject.com/Articles/1080626/Code-Your-Own-PHP-MVC-Framework-in-Hour
-- https://softwareengineering.stackexchange.com/questions/159529/how-to-structure-template-system-using-plain-php
+- MVC: https://www.codeproject.com/Articles/1080626/Code-Your-Own-PHP-MVC-Framework-in-Hour
+- Templating: https://softwareengineering.stackexchange.com/questions/159529/how-to-structure-template-system-using-plain-php
 
-Pagination
+Other PHP Knowledge
 
-- https://www.malasngoding.com/membuat-paging-dengan-php-dan-mysql/
+- Pagination: https://www.malasngoding.com/membuat-paging-dengan-php-dan-mysql/
+- AJAX: https://www.w3schools.com/php/php_ajax_php.asp
 
-AJAX on PHP
+Frontend Design
 
-- https://www.w3schools.com/php/php_ajax_php.asp
+- Responsive Table: https://codepen.io/andornagy/pen/EVXpbR
+- CSS Grid: https://speckyboy.com/replicate-bootstrap-grid-using-css-grid/
 
 ## Author
 

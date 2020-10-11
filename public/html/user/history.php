@@ -40,7 +40,6 @@ foreach ($this->transactions as $transaction) {
       <td data-column='Time'>$time</td>
       <td data-column='Address'>$Address</td>
     </tr>";
-    // TODO pagination
 }
 ?>
     </tbody>

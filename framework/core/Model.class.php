@@ -149,9 +149,13 @@ class Model
      * Get the count of all records
      *
      */
-    public function total()
+    public function numRows($where = '')
     {
-        $sql = "select count(*) from {$this->table}";
+        if (empty($where)) {
+            $sql = "select count(*) from {$this->table}";
+        } else {
+            $sql = "select count(*) from {$this->table} where $where";
+        }
         return $this->db->getOne($sql);
     }
     /**
@@ -165,7 +169,7 @@ class Model
         if (empty($where)) {
             $sql = "select * from {$this->table} limit $offset, $limit";
         } else {
-            $sql = "select * from {$this->table}  where $where limit $offset, $limit";
+            $sql = "select * from {$this->table} where $where limit $offset, $limit";
         }
         return $this->db->getAll($sql);
     }

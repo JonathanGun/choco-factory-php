@@ -17,7 +17,7 @@ class HomeController extends Controller
             'dashboard.php',
             'Dashboard',
             array(
-                'chocolates' => $this->chocolateModel->getMostSoldChocolates(10),
+                'chocolates' => $this->chocolateModel->getMostSoldChocolates(DASHBOARD_ITEMS),
             )
         ))->render();
     }

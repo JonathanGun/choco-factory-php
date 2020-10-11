@@ -7,7 +7,7 @@ class TransactionModel extends Model
         parent::__construct("Transaction");
     }
 
-    public function getTransactions($id, $n = 10)
+    public function getTransactions($id, $n = TRANSACTIONS_PER_PAGE)
     {
         $sql = "SELECT ChocoID,Name,Amount,Date,Price,Address FROM `Transaction` JOIN `Chocolate` USING (ChocoID) WHERE `UserID`='$id' ORDER BY Date DESC";
         if ($n >= 0) {

@@ -18,7 +18,7 @@ class UserController extends Controller
             'history.php',
             'History',
             array(
-                'transactions' => $this->transactionModel->getTransactions($_SESSION['id'], 10),
+                'transactions' => $this->transactionModel->getTransactions($_SESSION['id'], TRANSACTIONS_PER_PAGE),
             )
         ))->render();
     }

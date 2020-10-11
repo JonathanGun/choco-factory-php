@@ -6,31 +6,15 @@ class ChocolateModel extends Model
         parent::__construct("Chocolate");
     }
 
-    public function getChocolates($substr = '')
+    public function getChocolates($substr = '', $offset = 0, $limit = CHOCOLATES_PER_PAGE)
     {
-        $sql = "select * from $this->table";
-        if ($substr) {
-            $sql = $sql . " WHERE Name LIKE '%$substr%' OR ChocoID='$substr'";
-        }
-        $choco = $this->db->getAll($sql);
-        return $choco;
+        return $this->pageRows($offset, $limit, $substr ? "Name LIKE '%$substr%'" : '');
     }
 
-    public function getChocolateNames($substr = '')
-    {
-        $sql = "select ChocoID, Name from $this->table";
-        if ($substr) {
-            $sql = $sql . " WHERE Name LIKE '%$substr%' OR ChocoID='$substr'";
-        }
-        $chocoName = $this->db->getAll($sql);
-        return $chocoName;
-    }
-
-    public function getMostSoldChocolates($n = 10)
+    public function getMostSoldChocolates($n = DASHBOARD_ITEMS)
     {
         $sql = "select * from $this->table ORDER BY Sold DESC LIMIT $n";
-        $choco = $this->db->getAll($sql);
-        return $choco;
+        return $this->db->getAll($sql);
     }
 
     public function addChocolateAmount($id, $n)
