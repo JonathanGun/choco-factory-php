@@ -53,11 +53,12 @@ class Framework
         define('DB_PATH', FRAMEWORK_PATH . "database" . DS);
         define("LIB_PATH", FRAMEWORK_PATH . "libraries" . DS);
         define("HELPER_PATH", FRAMEWORK_PATH . "helpers" . DS);
-        define("TEMPLATE_PATH", PUBLIC_PATH . "templates" . DS);
         define("CSS_PATH", PUBLIC_PATH . "css" . DS);
         define("JS_PATH", PUBLIC_PATH . "js" . DS);
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
         define("HTML_PATH", PUBLIC_PATH . "html" . DS);
+        define("HOME_PATH", HTML_PATH . "home" . DS);
+        define("TEMPLATE_PATH", HTML_PATH . "templates" . DS);
         define("CHOCOLATE_PATH", HTML_PATH . "chocolate" . DS);
         define("USER_PATH", HTML_PATH . "user" . DS);
         define("ERROR_PATH", HTML_PATH . "error" . DS);

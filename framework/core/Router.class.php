@@ -9,8 +9,8 @@ class Router
         $explode_url = array_slice($explode_url, 1);
 
         if (empty($explode_url[0])) {
-            $request->controller = "Index";
-            $request->action = "index";
+            $request->controller = "Home";
+            $request->action = "dashboard";
             $request->params = [];
         } else {
             $request->controller = ucfirst($explode_url[0]);

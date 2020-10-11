@@ -28,26 +28,26 @@
   text-align: center;
 }
 
-.navbar > form {
+.navbar-search {
   display: flex;
   flex-grow: 1;
   text-align: center;
   margin: 0rem 3rem;
 }
 
-.navbar > form > button {
+.navbar-submit {
   padding: 0px 3rem;
   margin-right: 3rem;
 }
 
 @media (max-width: 768px) {
   .navbar,
-  .navbar > form {
+  .navbar-search {
     flex-direction: column;
     margin: 0rem;
   }
-  .navbar > form > input,
-  .navbar > form > button {
+  .navbar-search > input,
+  .navbar-submit {
     padding: 0.3rem;
   }
   .navbar * {

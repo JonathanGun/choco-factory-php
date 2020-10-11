@@ -12,21 +12,17 @@ class ViewNotFoundException extends Exception
 
 class View
 {
-    private $_scriptPath = TEMPLATE_PATH;
     public $properties;
-    public function setScriptPath($scriptPath)
+    public function __construct($subtitle = '', $properties = array())
     {
-        $this->_scriptPath = $scriptPath;
+        $this->properties = $properties;
+        $this->title = "A-Chong-co" . ($subtitle ? " | $subtitle" : '');
     }
-    public function __construct()
-    {
-        $this->properties = array();
-    }
-    public function render($filename)
+    public function render($filename = 'master.php')
     {
         ob_start();
-        if (file_exists($this->_scriptPath . $filename)) {
-            include $this->_scriptPath . $filename;
+        if (file_exists(TEMPLATE_PATH . $filename)) {
+            include TEMPLATE_PATH . $filename;
         } else {
             throw new ViewNotFoundException();
         }

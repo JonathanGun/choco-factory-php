@@ -5,24 +5,22 @@ class ChocolateController extends Controller
     public function __construct()
     {
         parent::__construct();
+        require VIEW_PATH . "ChocolateView.class.php";
         $this->model = $this->chocolateModel;
     }
 
-    public function search()
+    public function search($search_query)
     {
         $this->authenticate();
-        $this->filterMethod(array('POST', 'GET'));
+        $this->filterMethod(array('GET'));
 
-        $substr = $_POST["choco_search"] ?? '';
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' || $_SERVER['REQUEST_METHOD'] === 'POST') {
-            require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Search";
-            $view->content_file = CHOCOLATE_PATH . 'search.php';
-            $view->chocolates = $this->model->getChocolates($substr);
-            // TODO: pagination
-            echo $view->render('master.php');
-        }
+        echo (new ChocolateView(
+            'search.php',
+            'Search',
+            array(
+                "chocolates" => $this->model->getChocolates(urldecode($search_query)),
+            )
+        ))->render();
     }
 
     public function add()
@@ -44,11 +42,11 @@ class ChocolateController extends Controller
                 die();
             }
         } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Add New Chocolate";
-            $view->content_file = CHOCOLATE_PATH . 'create.php';
-            echo $view->render('master.php');
+            echo (new ChocolateView(
+                'create.php',
+                'Add New Chocolate',
+                array()
+            ))->render();
         }
     }
 
@@ -81,14 +79,13 @@ class ChocolateController extends Controller
         $this->authenticate();
         $this->filterMethod(array('GET'));
 
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Details";
-            $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'read.php';
-            echo $view->render('master.php');
-        }
+        echo (new ChocolateView(
+            'read.php',
+            'Details',
+            array(
+                "chocolate" => $this->model->selectByPk($i),
+            )
+        ))->render();
     }
 
     public function buy($i)
@@ -106,20 +103,24 @@ class ChocolateController extends Controller
             $this->transactionModel->addTransaction($_SESSION['id'], $i, $amount, $address);
 
             require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Buy Success";
-            $view->chocolate = $this->model->selectByPk($i);
-            $view->amount = $amount;
-            $view->content_file = CHOCOLATE_PATH . 'updatesuccess.php';
-            echo $view->render('master.php');
+            echo (new ChocolateView(
+                'updatesuccess.php',
+                'Buy Success',
+                array(
+                    "chocolate" => $this->model->selectByPk($i),
+                    "amount" => $amount,
+                )
+            ))->render();
 
         } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Buy";
-            $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'update.php';
-            echo $view->render('master.php');
+            echo (new ChocolateView(
+                'update.php',
+                'Buy',
+                array(
+                    "chocolate" => $this->model->selectByPk($i),
+                )
+            ))->render();
         }
     }
 
@@ -135,11 +136,13 @@ class ChocolateController extends Controller
                 $this->model->addChocolateAmount($i, $amount);
 
                 require_once VIEW_PATH . "ChocolateView.class.php";
-                $view = new ChocolateView();
-                $view->title = "A-Chong-co | Add Stock";
-                $view->chocolate = $this->model->selectByPk($i);
-                $view->content_file = CHOCOLATE_PATH . 'updatesuccess.php';
-                echo $view->render('master.php');
+                echo (new ChocolateView(
+                    'updatesuccess.php',
+                    'Add Stock',
+                    array(
+                        'chocolate' => $this->model->selectByPk($i),
+                    )
+                ))->render();
             } else {
                 echo "invalid add stock";
                 header("Location: /chocolate/restock/$i/");
@@ -147,11 +150,13 @@ class ChocolateController extends Controller
             }
         } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require_once VIEW_PATH . "ChocolateView.class.php";
-            $view = new ChocolateView();
-            $view->title = "A-Chong-co | Add Stock";
-            $view->chocolate = $this->model->selectByPk($i);
-            $view->content_file = CHOCOLATE_PATH . 'update.php';
-            echo $view->render('master.php');
+            echo (new ChocolateView(
+                'update.php',
+                'Stock',
+                array(
+                    'chocolate' => $this->model->selectByPk($i),
+                )
+            ))->render();
         }
     }
 }

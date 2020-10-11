@@ -1,12 +1,12 @@
 <?php
-class ChocolateView extends View
+class HomeView extends View
 {
     public function __construct($filename, $subtitle = '', $properties = array())
     {
         parent::__construct(
-            ' | Choco' . ($subtitle ? " | $subtitle" : ''),
+            ' | Home' . ($subtitle ? " | $subtitle" : ''),
             $properties
         );
-        $this->content_file = CHOCOLATE_PATH . $filename;
+        $this->content_file = HOME_PATH . $filename;
     }
 }

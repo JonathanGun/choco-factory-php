@@ -5,6 +5,7 @@ class UserController extends Controller
     public function __construct()
     {
         parent::__construct();
+        require VIEW_PATH . "UserView.class.php";
         $this->model = $this->userModel;
     }
 
@@ -13,12 +14,13 @@ class UserController extends Controller
         $this->authenticate();
         $this->filterMethod(array('GET'));
 
-        require_once VIEW_PATH . "UserView.class.php";
-        $view = new UserView();
-        $view->title = "A-Chong-co | History";
-        $view->transactions = $this->transactionModel->getTransactions($_SESSION['id'], 10);
-        $view->content_file = USER_PATH . 'history.php';
-        echo $view->render('master.php');
+        echo (new UserView(
+            'history.php',
+            'History',
+            array(
+                'transactions' => $this->transactionModel->getTransactions($_SESSION['id'], 10),
+            )
+        ))->render();
     }
 
     public function logout()
@@ -28,8 +30,9 @@ class UserController extends Controller
         die();
     }
 
-    public function login($errorMsg = '')
+    public function login()
     {
+        // if already loggedin
         if ($this->authenticateUtil()) {
             header('Location: /');
             die();
@@ -57,16 +60,17 @@ class UserController extends Controller
                 die();
             }
         } else {
-            require_once VIEW_PATH . "UserView.class.php";
-            $view = new UserView();
-            $view->title = "A-Chong-co | Login";
-            $view->content_file = USER_PATH . 'login.php';
-            echo $view->render('master.php');
+            echo (new UserView(
+                'login.php',
+                'Login',
+                array()
+            ))->render();
         }
     }
 
     public function register()
     {
+        // if already logged in
         if ($this->authenticateUtil()) {
             header('Location: /');
             die();
@@ -79,21 +83,25 @@ class UserController extends Controller
             $unique = !$this->model->exists($username, $email);
             if ($unique && $username && $password && $email) {
                 $sha1 = sha1($username . $password . SALT);
-                $id = $this->model->insert(array("Username" => $username, "Password" => $password, "Email" => $email));
+                $id = $this->model->insert(array(
+                    "Username" => $username,
+                    "Password" => $password,
+                    "Email" => $email,
+                ));
                 $this->loginUtil($id, $sha1);
                 header('Location: /');
                 die();
             } else {
-                echo "invalid register!";
+                // invalid register
                 header('Location: /user/register/');
                 die();
             }
         } else {
-            require_once VIEW_PATH . "UserView.class.php";
-            $view = new UserView();
-            $view->title = "A-Chong-co | Register";
-            $view->content_file = USER_PATH . 'register.php';
-            echo $view->render('master.php');
+            echo (new UserView(
+                'register.php',
+                'Register',
+                array()
+            ))->render();
         }
     }
 }

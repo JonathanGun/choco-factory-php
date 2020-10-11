@@ -7,10 +7,10 @@ $_SESSION["loggedin"] ? (
     :
     "<a class='navbar-item' href='/user/history/'>History</a>")
 : '';?>
-  <form action='/chocolate/search/' method="POST" class="fill">
-    <input class="navbar-item fill mr-2 ml-2 pt-2 pb-2" placeholder="Leslie" min="0" name="choco_search">
-    <button type="submit" class="btn btn-secondary btn-small navbar-item">Search</button>
-  </form>
+  <div class="navbar-search fill">
+    <input class="navbar-item fill mr-2 ml-2 pt-2 pb-2" placeholder="Leslie" min="0" id="choco_search">
+    <button type="submit" class="btn btn-secondary btn-small navbar-item navbar-submit" onclick="location.href='/chocolate/search/'+encodeURI(document.getElementById('choco_search').value)+'/'">Search</button>
+  </div>
   <?=$_SESSION["loggedin"] ?
 '<a class="navbar-item text-right" href="/user/logout/"> Logout </a>'
 :
