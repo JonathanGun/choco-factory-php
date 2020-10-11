@@ -8,8 +8,8 @@ $_SESSION["loggedin"] ? (
     "<a class='navbar-item' href='/user/history/'>History</a>")
 : '';?>
   <div class="navbar-search fill">
-<input class="navbar-item fill mr-2 ml-2 pt-2 pb-2" placeholder="Leslie" min="0" id="choco_search">
-    <button type="submit" class="btn btn-secondary btn-small navbar-item navbar-submit" onclick="submit();">Search</button>
+  <input class="navbar-item fill mr-2 ml-2 pt-2 pb-2" placeholder="chocolate_name" min="0" id="choco_search" value='<?=$this->queryString?>'>
+    <button type="button" class="btn btn-secondary btn-small navbar-item navbar-submit" onclick="submit();">Search</button>
   </div>
   <?=$_SESSION["loggedin"] ?
 '<a class="navbar-item text-right" href="/user/logout/">Logout</a>'
@@ -21,9 +21,14 @@ $_SESSION["loggedin"] ? (
 </nav>
 <script>
   document.getElementById('choco_search').onkeyup = function(e){
-    if(e.key==='Enter')submit();
+    if(e.key==='Enter') submit();
   }
   function submit(){
-    location.href='/chocolate/search/'+encodeURI(document.getElementById('choco_search').value)+'/';
+    var queryString = encodeURI(document.getElementById('choco_search').value);
+    if(queryString){
+      location.href = '/chocolate/search/' + queryString + '/';
+    } else {
+      location.href = '/chocolate/search/';
+    }
   }
 </script>

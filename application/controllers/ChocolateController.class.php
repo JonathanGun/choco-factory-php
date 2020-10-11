@@ -19,6 +19,7 @@ class ChocolateController extends Controller
             'Search',
             array(
                 "chocolates" => $this->model->getChocolates(urldecode($search_query)),
+                "queryString" => $search_query,
             )
         ))->render();
     }

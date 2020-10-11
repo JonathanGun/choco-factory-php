@@ -1,7 +1,7 @@
 <script src="/public/js/login.js"></script>
 
-<div class="container">
-  <h1 class="jumbotron">A-Chong Choco Factory</h1>
+<div class="container bg-white pt-3 pb-1">
+  <h1 class="jumbotron">A-Chong-co Choco Factory</h1>
   <form onsubmit="return validateForm();" href="/user/login/" method="POST">
     <div class="form-group row">
       <div class="col-xs-12 form-label">Username</div>
@@ -23,6 +23,8 @@
         <button type="submit" class="btn">Login</button>
       </div>
     </div>
+    <div class="form-group">
+      <button type="button" class="text-center btn btn-small btn-secondary" onclick="location.href='/user/register/'">Register new account</button>
+    </div>
   </form>
-  <a class="text-center btn btn-small btn-secondary mt-5" href="/user/register/">Register new account</a>
 </div>

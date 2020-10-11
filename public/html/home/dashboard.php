@@ -2,7 +2,7 @@
 include TEMPLATE_PATH . 'navbar.php';
 ?>
 
-<div class="container">
+<div class="container pb-3">
   <div class="row mb-4">
     <p class="col-xs-6">Hello, <?=$_SESSION["username"] ? $_SESSION["username"] : "Anonymous"?></p>
     <a href="/chocolate/search/" class="col-xs-6 text-right">View all chocolates</a>
@@ -23,5 +23,8 @@ foreach ($this->chocolates as $chocolate) {
     </div>";
 }
 ?>
+      <div class="col-xs-12">
+        <a type="button" class="btn float-right" href="/chocolate/search/">Browse More Choco</a>
+      </div>
     </div>
 </div>

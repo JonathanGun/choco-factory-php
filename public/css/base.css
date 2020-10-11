@@ -6,6 +6,7 @@
 }
 html {
   scroll-behavior: smooth;
+  min-width: 450px;
 }
 body {
   margin: var(--header-height) 0 0 0;

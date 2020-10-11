@@ -11,6 +11,7 @@
 
 .card.horizontal {
   flex-direction: row;
+  margin: var(--mb-1) 0;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -42,7 +43,6 @@
 
 .card-title {
   font-size: large;
-  /*font-weight: 600;*/
 }
 .card-text {
   font-size: normal;

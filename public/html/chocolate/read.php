@@ -1,6 +1,5 @@
 <?php
 $view = new View();
-$view->items = array("History" => "/user/history/");
 echo $view->render('navbar.php');
 ?>
 
@@ -9,11 +8,11 @@ echo $view->render('navbar.php');
 
   <h2><?=$Name?></h2>
   <div class="row">
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-xs-12 col-sm-5 col-md-4">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
     </div>
     <!-- TODO ajax remaining stock -->
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-12 col-sm-7 col-md-8">
       <?="
       <p class='mb-1'>Amount sold: $Sold</p>
       <p class='mb-1'>Price: Rp$Price,00</p>

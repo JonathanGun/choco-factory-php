@@ -1,6 +1,5 @@
 <?php
 $view = new View();
-$view->items = array("History" => "/user/history/");
 echo $view->render('navbar.php');
 ?>
 <script src="/public/js/updateamount.js"></script>
@@ -10,11 +9,11 @@ echo $view->render('navbar.php');
 
   <h2><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?></h2>
   <form action='/chocolate/<?=$_SESSION["issuperuser"] ? 'restock' : 'buy'?>/<?=$ChocoID?>/' method="POST" class="row pb-2">
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-xs-12 col-sm-5 col-md-4">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
     </div>
     <!-- TODO ajax remaining stock -->
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-12 col-sm-7 col-md-8">
       <?="
       <p class='mb-1'>Chocolate Name: $Name</p>
       <p class='mb-1'>Amount sold: $Sold</p>
@@ -24,20 +23,16 @@ echo $view->render('navbar.php');
       <p class='mb-1'>" . ($Description ?? '-') . "</p>
       "?>
       <div class="row">
-        <div class="col-xs-12 col-md-8 ml-2 mr-2">
-          <label for="name mb-1">Amount to <?=$_SESSION["issuperuser"] ? 'Add' : 'Buy'?>:</label>
-          <div class="row flex mb-1">
-            <button type="button" class="btn btn-small btn-secondary" onclick="reduceAmount();<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">
-              <div class="pl-2 pr-2">-</div>
-            </button>
-            <input type="fill text" class="card-item fill" name="amount" id="amount" value="1" required <?=$_SESSION["issuperuser"] ? '' : 'onchange="updatePrice()"'?>>
-            <button type="button" class="btn btn-small btn-secondary" onclick="increaseAmount();<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">
-              <div class="pl-2 pr-2">+</div>
-            </button>
+        <div class="col-xs-12 row">
+          <label for="name" class="col-xs-12">Amount to <?=$_SESSION["issuperuser"] ? 'Add' : 'Buy'?>:</label>
+          <div class="row col-xs-12 col-md-8">
+            <button type="button" class="btn btn-small btn-secondary col-xs-2" onclick="reduceAmount();<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">-</button>
+            <input type="text" class="col-xs-8 text-center" name="amount" id="amount" value="1" required <?=$_SESSION["issuperuser"] ? '' : 'onchange="updatePrice()"'?>>
+            <button type="button" class="btn btn-small btn-secondary col-xs-2" onclick="increaseAmount();<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">+</button>
           </div>
         </div>
         <?=$_SESSION["issuperuser"] ? '' : '
-        <div class="col-xs-12 col-md-4 ml-2 mr-2">
+        <div class="col-xs-12 col-sm-4 ml-2 mr-2">
           <p class="mb-1">Total Price</p>
           <p class="mb-1 large-text inline">Rp <p class="inline large-text" id="total_price">' . number_format($Price, 2, ',', '.') . '</p></p>
         </div>'?>

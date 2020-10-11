@@ -15,7 +15,7 @@ class HomeController extends Controller
 
         echo (new HomeView(
             'dashboard.php',
-            '| Dashboard',
+            'Dashboard',
             array(
                 'chocolates' => $this->chocolateModel->getMostSoldChocolates(10),
             )
