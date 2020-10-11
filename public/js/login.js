@@ -42,17 +42,12 @@ function checkUnique() {
     var username = document.getElementById("username").value;
     var email = document.getElementById("email").value;
     if (email.length > 0 && username.length > 0) {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this);
-                updateValidation(document.getElementById("username"), this.responseText=='true', "errorUnique", "Username and email is not unique");
-                updateValidation(document.getElementById("email"), this.responseText=='true', "errorUnique", "Username and email is not unique");
-            }
-        };
-        xmlhttp.open("GET", encodeURI("/user/checkUnique/" + username + ',' + email.replace('.', ':')), true);
-        xmlhttp.send();
-    } else {
-        return true;
+        var url = encodeURI("/user/checkUnique/" + username + ',' + email.replace('.', ':'));
+        ajax("GET", url, onSuccessCheckUnique);
     }
+}
+
+function onSuccessCheckUnique(resp){
+    updateValidation(document.getElementById("username"), resp.responseText=='true', "errorUnique", "Username and email is not unique");
+    updateValidation(document.getElementById("email"), resp.responseText=='true', "errorUnique", "Username and email is not unique");
 }

@@ -1,18 +1,19 @@
 <?php
 $view = new View();
 echo $view->render('navbar.php');
+
+extract($this->properties["chocolate"]);
+echo "<script>var choco_id = $ChocoID;</script>";
 ?>
 <script src="/public/js/updateamount.js"></script>
+<script src="/public/js/ajaxstock.js"></script>
 
 <div class="container bg-white">
-  <?php extract($this->properties["chocolate"]);?>
-
   <h2><?=$_SESSION["issuperuser"] ? 'Add Stock' : 'Buy Chocolate'?></h2>
   <form action='/chocolate/<?=$_SESSION["issuperuser"] ? 'restock' : 'buy'?>/<?=$ChocoID?>/' method="POST" class="row pb-2">
     <div class="col-xs-12 col-sm-5 col-md-4">
       <?="<img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>";?>
     </div>
-    <!-- TODO ajax remaining stock -->
     <div class="col-xs-12 col-sm-7 col-md-8">
       <?="
       <p class='mb-1'>Chocolate Name: $Name</p>

@@ -16,5 +16,3 @@ function thousandSeparator(x, precission=2, decimal_sep=',', thousand_sep='.') {
     decimal = (x - Math.round(x)).toFixed(precission).toString().slice(2);
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousand_sep) + decimal_sep + decimal;
 }
-
-// TODO ajax stock coklat

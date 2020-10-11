@@ -8,7 +8,7 @@ class ChocolateModel extends Model
 
     public function getChocolates($substr = '', $offset = 0, $limit = CHOCOLATES_PER_PAGE)
     {
-        return $this->pageRows($offset, $limit, $substr ? "Name LIKE '%$substr%'" : '');
+        return $this->pageRows($offset, $limit, $substr ? "Name LIKE '%$substr%'" : '', 'Sold');
     }
 
     public function getMostSoldChocolates($n = DASHBOARD_ITEMS)

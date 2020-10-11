@@ -3,11 +3,12 @@ $view = new View();
 $view->queryString = $this->queryString;
 echo $view->render('navbar.php');
 
-$pages = ceil($this->numRows / CHOCOLATES_PER_PAGE);
+$numRows = count($this->chocolates);
+$pages = ceil($numRows / CHOCOLATES_PER_PAGE);
 $js_array = json_encode($this->chocolates);
-echo "<script>var chocolates = $js_array;var chocolate_per_page = " . CHOCOLATES_PER_PAGE . ";var current_page = 1;var pages=$pages;</script>";
+echo "<script>var chocolates = $js_array;var chocolate_per_page = " . CHOCOLATES_PER_PAGE . ";var pages=$pages;var num_rows=$numRows;</script>";
 
-require_once VIEW_PATH . 'PaginationView.class.php';
+include_once VIEW_PATH . 'PaginationView.class.php';
 ?>
 <script src="/public/js/pagination.js"></script>
 
@@ -18,10 +19,10 @@ require_once VIEW_PATH . 'PaginationView.class.php';
     </div>
   <div class="row">
     <div class="col-xs-12">
-      <p><?=$this->numRows?> results found</p>
+      <p><?=$numRows?> results found</p>
     </div>
   <?php
-for ($i = 1; $i <= min(CHOCOLATES_PER_PAGE, count($this->chocolates)); $i++) {
+for ($i = 1; $i <= min(CHOCOLATES_PER_PAGE, $numRows); $i++) {
     $chocolate = $this->chocolates[$i - 1];
     extract($chocolate);
     echo "<div class='col-xs-12' id='choco$i'>
@@ -41,4 +42,7 @@ for ($i = 1; $i <= min(CHOCOLATES_PER_PAGE, count($this->chocolates)); $i++) {
 ?>
   </div>
   <?=(new PaginationView($pages, 'updateSearch'))->render();?>
+  <div class="row">
+    <a type="button" class="col-xs-12 btn float-right" href="/">Return to dashboard</a>
+  </div>
 </div>

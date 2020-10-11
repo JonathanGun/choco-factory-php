@@ -164,13 +164,15 @@ class Model
      * @param $limit int number of records of each fetch
      * @param $where string where condition,default is empty
      */
-    public function pageRows($offset, $limit, $where = '')
+    public function pageRows($offset, $limit, $where = '', $orderby = '')
     {
-        if (empty($where)) {
-            $sql = "select * from {$this->table} limit $offset, $limit";
-        } else {
-            $sql = "select * from {$this->table} where $where limit $offset, $limit";
+        if (!empty($where)) {
+            $where = 'where ' . $where;
         }
+        if (!empty($orderby)) {
+            $orderby = 'order by ' . $orderby . ' DESC';
+        }
+        $sql = "select * from {$this->table} $where $orderby limit $offset, $limit";
         return $this->db->getAll($sql);
     }
 }

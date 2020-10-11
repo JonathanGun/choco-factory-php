@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/card.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/form.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/table.css" />
+    <script src="/public/js/ajax.js"></script>
     <title><?=$this->title ?? 'A-Chong-co'?></title>
   </head>
 

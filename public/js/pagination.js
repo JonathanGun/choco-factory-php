@@ -1,4 +1,6 @@
-function updateSearch(p){
+var current_page = 1;
+
+function updatePagination(p){
     // scroll to top
     window.scrollTo(0,0);
     
@@ -12,12 +14,12 @@ function updateSearch(p){
         if(Number.isInteger(p)){
             current_page = p;
         } else {
-            return;
+            return false;
         }
     }
     if (current_page > pages || current_page < 1){
         current_page = save;
-        return;
+        return false;
     }
 
     // update pagination
@@ -30,6 +32,14 @@ function updateSearch(p){
             el.classList.add("bold");
         }
     })
+
+    return true;
+}
+
+function updateSearch(p){
+    if(!updatePagination(p)){
+        return;
+    }
 
     // update chocolates
     current_page--;
@@ -55,6 +65,40 @@ function updateSearch(p){
             choco_price.innerHTML = chocolate.Price;
             choco_stock.innerHTML = chocolate.Stock;
             choco_desc.innerHTML = (chocolate.Description?chocolate.Description:'-');
+        }
+    }
+    current_page++;
+}
+
+function updateTransaction(p){
+    if(!updatePagination(p)){
+        return;
+    }
+
+    // update transcactions
+    current_page--;
+    for(let i = 1; i <= transaction_per_page; i++){
+        var transaction_div = document.getElementById('transaction'+i);
+        if(current_page*transaction_per_page + i > transactions.length){
+            if(transaction_div !== null){
+                transaction_div.style.display = 'none';
+            }
+        } else {
+            transaction_div.style.display = '';
+            var transaction = transactions[current_page*transaction_per_page + i - 1];
+            var transaction_name = document.getElementById('transaction_name'+i);
+            var transaction_amount = document.getElementById('transaction_amount'+i);
+            var transaction_price = document.getElementById('transaction_price'+i);
+            var transaction_date = document.getElementById('transaction_date'+i);
+            var transaction_time = document.getElementById('transaction_time'+i);
+            var transaction_address = document.getElementById('transaction_address'+i);
+            transaction_name.innerHTML = transaction.Name;
+            transaction_name.href = '/chocolate/view/'+transaction.ChocoID+'/';
+            transaction_amount.innerHTML = transaction.Amount;
+            transaction_price.innerHTML = transaction.Price * transaction.Amount;
+            transaction_date.innerHTML = transaction.Date;
+            transaction_time.innerHTML = transaction.Date;
+            transaction_address.innerHTML = transaction.Address;
         }
     }
     current_page++;

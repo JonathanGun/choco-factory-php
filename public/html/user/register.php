@@ -2,7 +2,7 @@
 
 <div class="container bg-white pt-3 pb-1">
   <h1 class="jumbotron">A-Chong-co Choco Factory</h1>
-  <div class="row">
+  <div class="row mb-4">
     <p class="col-xs-12" id="errorUsername"></p>
     <p class="col-xs-12" id="errorEmail"></p>
     <p class="col-xs-12" id="errorUnique"></p>
