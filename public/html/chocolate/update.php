@@ -17,8 +17,8 @@ echo "<script>var choco_id = $ChocoID;</script>";
     <div class="col-xs-12 col-sm-7 col-md-8">
       <?="
       <p class='mb-1'>Chocolate Name: $Name</p>
-      <p class='mb-1'>Amount sold: $Sold</p>
-      <p class='mb-1 inline'>Price: Rp<p id='price' class='inline'>$Price</p>,00</p>
+      <p class='mb-1'>Amount sold: " . number_format($Sold, 0, ',', '.') . "</p>
+      <p class='mb-1 inline'>Price: Rp <p id='price' class='inline'>" . number_format($Price, 0, ',', '.') . "</p>,00</p>
       <p class='mb-1 inline'>Amount Remaining: <p id='stock' class='inline'>$Stock</p></p>
       <p class='mb-1'>Description</p>
       <p class='mb-1'>" . ($Description ?? '-') . "</p>
@@ -29,7 +29,7 @@ echo "<script>var choco_id = $ChocoID;</script>";
           <div class="row col-xs-12 col-md-8">
             <button type="button" class="btn btn-small btn-secondary col-xs-2" onclick="reduceAmount();<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">-</button>
             <input type="text" class="col-xs-8 text-center" name="amount" id="amount" value="1" required <?=$_SESSION["issuperuser"] ? '' : 'onchange="updatePrice()"'?>>
-            <button type="button" class="btn btn-small btn-secondary col-xs-2" onclick="increaseAmount();<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">+</button>
+            <button type="button" class="btn btn-small btn-secondary col-xs-2" onclick="increaseAmount(<?=$_SESSION['issuperuser'] ? 'Infinity' : ''?>);<?=$_SESSION['issuperuser'] ? '' : 'updatePrice();'?>">+</button>
           </div>
         </div>
         <?=$_SESSION["issuperuser"] ? '' : '

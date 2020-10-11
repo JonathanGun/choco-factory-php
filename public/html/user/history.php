@@ -44,8 +44,8 @@ for ($i = 1; $i <= min(TRANSACTIONS_PER_PAGE, $numRows); $i++) {
     $time = $datetime->format('H:i:s');
     echo "<tr id='transaction$i'>
       <td data-column='Choco Name'><a href='/chocolate/view/$ChocoID/' id='transaction_name$i'>$Name</a></td>
-      <td data-column='Amount' id='transaction_amount$i'>$Amount</td>
-      <td data-column='Total Price' id='transaction_price$i'>" . ($Price * $Amount) . "</td>
+      <td data-column='Amount' id='transaction_amount$i'>" . number_format($Amount, 0, ',', '.') . "</td>
+      <td data-column='Total Price' id='transaction_price$i'>Rp " . number_format($Price * $Amount, 0, ',', '.') . ",00</td>
       <td data-column='Date' id='transaction_date$i'>$date</td>
       <td data-column='Time' id='transaction_time$i'>$time</td>
       <td data-column='Address' id='transaction_address$i'>$Address</td>

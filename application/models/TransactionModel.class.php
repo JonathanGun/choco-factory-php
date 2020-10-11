@@ -19,7 +19,7 @@ class TransactionModel extends Model
 
     private function custompageRows($where = '')
     {
-        $sql = "select * from {$this->table} JOIN `Chocolate` USING (ChocoID) where $where";
+        $sql = "select * from {$this->table} JOIN `Chocolate` USING (ChocoID) where $where ORDER BY Date DESC";
         return $this->db->getAll($sql);
     }
 }

@@ -16,8 +16,8 @@ echo "<script>var choco_id = $ChocoID;</script>";
     <div class="col-xs-12 col-sm-9">
       <?="
       <p class='mb-1'>Chocolate Name: $Name</p>
-      <p class='mb-1'>Amount sold: $Sold</p>
-      <p class='mb-1 inline'>Price: Rp<p id='price' class='inline'>$Price</p>,00</p>
+      <p class='mb-1'>Amount sold: " . number_format($Sold, 0, ',', '.') . "</p>
+      <p class='mb-1 inline'>Price: Rp<p id='price' class='inline'>" . number_format($Price, 0, ',', '.') . "</p>,00</p>
       <p class='mb-1 inline'>Amount Remaining: <p id='stock' class='inline'>$Stock</p></p>
       <p class='mb-1'>Description</p>
       <p class='mb-1'>" . ($Description ?? '-') . "</p>

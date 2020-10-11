@@ -94,12 +94,18 @@ function updateTransaction(p){
             var transaction_address = document.getElementById('transaction_address'+i);
             transaction_name.innerHTML = transaction.Name;
             transaction_name.href = '/chocolate/view/'+transaction.ChocoID+'/';
-            transaction_amount.innerHTML = transaction.Amount;
-            transaction_price.innerHTML = transaction.Price * transaction.Amount;
-            transaction_date.innerHTML = transaction.Date;
-            transaction_time.innerHTML = transaction.Date;
+            transaction_amount.innerHTML = thousandSeparator(transaction.Amount, precission=0);
+            transaction_price.innerHTML = "Rp " + thousandSeparator(transaction.Price * transaction.Amount);
+            transaction_date.innerHTML = transaction.Date.split(' ')[0];
+            transaction_time.innerHTML = transaction.Date.split(' ')[1];
             transaction_address.innerHTML = transaction.Address;
         }
     }
     current_page++;
+}
+
+function thousandSeparator(x, precission=2, decimal_sep=',', thousand_sep='.') {
+    decimal = (x - Math.round(x)).toFixed(precission).toString().slice(2);
+    if(precission > 0) decimal = decimal_sep + decimal;
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousand_sep) + decimal;
 }

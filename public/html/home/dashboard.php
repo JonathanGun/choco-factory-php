@@ -16,8 +16,8 @@ foreach ($this->chocolates as $chocolate) {
         <img src='/public/uploads/$ImageName' class='card-img' alt='coklat$ChocoID'>
         <div class='card-body'>
           <p class='card-title'>$Name</p>
-          <p class='card-text'>Amount sold: $Sold</p>
-          <p class='card-text'>Price: $Price</p>
+          <p class='card-text'>Amount sold: " . number_format($Sold, 0, ',', '.') . "</p>
+          <p class='card-text'>Price: Rp " . number_format($Price, 0, ',', '.') . ",00</p>
         </div>
       </a>
     </div>";
