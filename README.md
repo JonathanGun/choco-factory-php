@@ -20,8 +20,9 @@ Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are
 1. Install Requirements (I used [XAMPP](https://www.apachefriends.org/download.html))
 1. Clean (delete all files) inside PHP htdocs folder
 1. Clone repo inside PHP htdocs folder
-1. Restore `chocofac20201009.sql`
-1. Copy `config.example.ini` ke `config.ini`, adjust
+1. Restore database schema
+1. Restore database images
+1. Copy `config.example.ini` to `config.ini`, adjust
 
 ## Restoring Database
 
@@ -49,6 +50,14 @@ This will create:
 - 100 chocolates
 - 2211 transactions
 
+### Restoring Database Images
+
+sample images is not all saved on repo, you can populate them by running this script:
+
+```
+python populate_uploads.py
+```
+
 ## Running
 
 1. Run PHP and MySQL (again, I used XAMPP)
@@ -72,11 +81,13 @@ htdocs
 │   ├───html
 │   │   ├───chocolate
 │   │   ├───error
+│   │   ├───home
+│   │   ├───templates
 │   │   └───user
 │   ├───images
 │   ├───js
-│   ├───templates
 │   └───uploads
+├───screenshot
 └───wwwroot
 ```
 
@@ -94,10 +105,15 @@ htdocs
 > To register a new account
 
 ![](screenshot/register1-min.jpg)
+
 Valid example
+
 ![](screenshot/register2-min.jpg)
+
 Invalid example
+
 ![](screenshot/register3-min.jpg)
+
 Not unique example (username-email pair already taken)
 
 ### Login
@@ -111,8 +127,11 @@ Not unique example (username-email pair already taken)
 > using search bar on top
 
 ![](screenshot/search1-min.jpg)
+
 with pagination:
+
 ![](screenshot/search_pagination1-min.jpg)
+
 ![](screenshot/search_pagination2-min.jpg)
 
 ### Chocolate Detail
@@ -120,9 +139,12 @@ with pagination:
 > Click on a chocolate card to see detail
 
 ![](screenshot/detail_u1-min.jpg)
-viewed as normal user
+
+viewed as normal user (user can buy)
+
 ![](screenshot/detail_su1-min.jpg)
-viewed as super user
+
+viewed as super user (user can add stock)
 
 ### Buy Chocolate
 
@@ -134,6 +156,8 @@ viewed as super user
 
 ![](screenshot/buy2-min.jpg)
 
+prompt after succesful transaction
+
 ### Add Chocolate Stock
 
 > Click `Add Stock` on Chocolate Detail page (as superuser)
@@ -144,12 +168,16 @@ viewed as super user
 
 ![](screenshot/add_stock2-min.jpg)
 
+prompt after succesful add stock
+
 ### Transaction History
 
 > Click `History` on navigation bar (on top of the page) (as user)
 
 ![](screenshot/history1-min.jpg)
+
 ![](screenshot/history_pagination1-min.jpg)
+
 with pagination
 
 ### Add New Chocolate
@@ -160,6 +188,8 @@ with pagination
 
 > Click `Add` to add new chocolate, or `Cancel` to cancel
 
+![](screenshot/detail_su1-min.jpg)
+
 will redirect to that chocolate details page after succesful adding new choco
 
 ## Bonus Features
@@ -169,6 +199,7 @@ will redirect to that chocolate details page after succesful adding new choco
 > Cookie is not plain username-password pair anymore
 
 ![](screenshot/cookie1-min.jpg)
+
 using SHA-1 of salted username+password+secret
 
 ### Real Time Stock
@@ -176,8 +207,11 @@ using SHA-1 of salted username+password+secret
 > will check again on database, not only on frontend
 
 ![](screenshot/realtime1-min.jpg)
+
 before
+
 ![](screenshot/realtime2-min.jpg)
+
 after
 
 ### Responsive Layout
@@ -191,6 +225,7 @@ already shown above
 > So the user know if it is successful
 
 ![](screenshot/buy2-min.jpg)
+
 ![](screenshot/add_stock2-min.jpg)
 
 ## Pembagian Tugas
