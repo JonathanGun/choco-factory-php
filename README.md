@@ -61,7 +61,7 @@ python populate_uploads.py
 ## Running
 
 1. Run PHP and MySQL (again, I used XAMPP)
-1. Open localhost:\$PORT (default is [localhost:80](localhost:80))
+1. Open localhost:\$PORT (default is [localhost:80](http://localhost:80/))
 
 ## Project Structure
 
@@ -121,6 +121,18 @@ Not unique example (username-email pair already taken)
 > Must login before entering website
 
 ![](screenshot/login1-min.jpg)
+
+### Dashboard
+
+> Showing top 10 chocolates by amount sold
+
+![](screenshot/dashboard_u1-min.jpg)
+
+as viewed by normal user (difference on navbar)
+
+![](screenshot/dashboard_su1-min.jpg)
+
+as viewed by super user (difference on navbar)
 
 ### Search by name
 
