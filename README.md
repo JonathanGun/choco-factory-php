@@ -17,12 +17,20 @@ Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are
 
 ## Setting Up
 
-1. Install Requirements (I used [XAMPP](https://www.apachefriends.org/download.html))
-1. Clean (delete all files) inside PHP htdocs folder
-1. Clone repo inside PHP htdocs folder
-1. Restore database schema
-1. Restore database images
-1. Copy `config.example.ini` to `config.ini`, adjust
+1. Install Requirements (I used [XAMPP](https://www.apachefriends.org/download.html) to install all requirements)
+1. Clean (delete all files) inside PHP `htdocs` folder
+1. Clone repo inside PHP `htdocs` folder
+1. Copy `config.example.ini`, rename to `config.ini`
+1. Adjust `config.ini` if needed
+1. Run PHP and MySQL (more info see next section)
+1. Restore database schema (more info see next section)
+1. Restore database images (more info see next section)
+
+## Running
+
+1. Run PHP and MySQL (again, I used [XAMPP](https://www.apachefriends.org/download.html))
+   - If using XAMPP: press `Start` on Apache(PHP) and MySQL
+2. Open localhost:\$PORT on browser (default url is [localhost:80](http://localhost:80/))
 
 ## Restoring Database
 
@@ -32,13 +40,21 @@ Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are
 mysql -u root -p
 ```
 
-2. Create new database
+2. Enter mysql password (default is empty)
+
+3. Create new database
 
 ```
 CREATE DATABASE chocofac;
 ```
 
-3. Execute queries
+4. Use database
+
+```
+USE chocofac;
+```
+
+4. Execute queries
 
 ```
 source chocofac20201009.sql
@@ -50,18 +66,13 @@ This will create:
 - 100 chocolates
 - 2211 transactions
 
-### Restoring Database Images
+## Restoring Database Images
 
 sample images is not all saved on repo, you can populate them by running this script:
 
 ```
 python populate_uploads.py
 ```
-
-## Running
-
-1. Run PHP and MySQL (again, I used XAMPP)
-1. Open localhost:\$PORT (default is [localhost:80](http://localhost:80/))
 
 ## Project Structure
 
