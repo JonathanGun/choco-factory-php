@@ -34,6 +34,6 @@ class View
     }
     public function __get($k)
     {
-        return (($this->properties[$k]) ?? '');
+        return (isset($this->properties[$k]) ? $this->properties[$k] : '');
     }
 }

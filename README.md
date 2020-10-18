@@ -3,36 +3,38 @@
 Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are the key features:
 
 - Login and Register account,
-- User can buy items,
-- Superuser/Admin can create new item and restock item,
+- User can buy chocolate,
+- Superuser/Admin can create new chocolate and restock chocolate,
 - Some functions updated using AJAX,
 - Data are saved on MySQL databases,
 - no framework library used, but I made my own, worked around MVC concept
 
+Update Oct 19, 2020: deployed on [http://jonathan.elseproperty.com/](http://jonathan.elseproperty.com/)
+
 ## Requirements
 
-1. PHP
-1. Mysql
+1. PHP (tested on 5.6+)
+1. Mysql (tested on 5.5.8)
 1. Python 3 (tested on 3.6+)
 1. Your favorite browser
 
 ## Setting Up
 
 1. Install Requirements (I used [XAMPP](https://www.apachefriends.org/download.html) to install all requirements)
-1. Clean (delete all files) inside PHP `htdocs` folder
-1. Clone repo inside PHP `htdocs` folder
+1. Clean (delete all files) inside PHP root document folder (i.e: `htdocs` on XAMPP)
+1. Clone repo inside PHP root document folder (i.e: `htdocs` on XAMPP)
 1. Open folder `application/config`
 1. Duplicate `config.example.ini`, rename to `config.ini`
 1. Adjust `config.ini` if needed
 1. Run PHP and MySQL (more info see next section)
 1. Restore database schema (more info see next section)
-1. Restore database images (more info see next section)
+1. Restore chocolate images (more info see next section)
 
 ## Running
 
 1. Run PHP and MySQL (again, I used [XAMPP](https://www.apachefriends.org/download.html))
    - If using XAMPP: press `Start` on Apache(PHP) and MySQL
-2. Open localhost:\$PORT on browser (default url is [localhost:80](http://localhost:80/))
+2. Open localhost:\$PORT on browser (default url is [http://localhost:80/](http://localhost:80/))
 
 ## Restoring Database
 
@@ -68,7 +70,7 @@ This will create:
 - 100 chocolates
 - 2211 transactions
 
-## Restoring Database Images
+## Restoring Chocolate Images
 
 sample images is not all saved on repo, you can populate them by running this script:
 

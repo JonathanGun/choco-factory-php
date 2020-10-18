@@ -43,7 +43,7 @@ class Framework
 
         // Define path constants
         define("DS", DIRECTORY_SEPARATOR);
-        define("ROOT", dirname(getcwd()) . DS . 'htdocs' . DS);
+        define("ROOT", realpath(dirname(__FILE__) . DS . '..' . DS . '..') . DS);
         define("APP_PATH", ROOT . 'application' . DS);
         define("FRAMEWORK_PATH", ROOT . "framework" . DS);
         define("PUBLIC_PATH", ROOT . "public" . DS);

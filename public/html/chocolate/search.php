@@ -34,7 +34,7 @@ for ($i = 1; $i <= min(CHOCOLATES_PER_PAGE, $numRows); $i++) {
             <p class='card-text inline'>Price: Rp <p class='inline' id='chocoprice$i'>" . number_format($Price, 0, ',', '.') . ",00</p></p>
             <p class='card-text inline'>Amount Remaining: <p class='inline' id='chocostock$i'>$Stock</p></p>
             <p class='card-text'>Description</p>
-            <p class='card-text' id='chocodesc$i'>" . ($Description ?? '-') . "</p>
+            <p class='card-text' id='chocodesc$i'>" . (isset($Description) ? $Description : '-') . "</p>
           </div>
         </a>
       </div>";

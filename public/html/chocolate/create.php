@@ -24,7 +24,7 @@ echo $view->render('navbar.php');
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-xs-12 col-sm-2 form-label">Image</div>
+      <div class="col-xs-12 col-sm-2 form-label">Image (only accepts jpg, max 1MB)</div>
       <div class="col-xs-12 col-sm-10">
         <input type="file" class="form-input" name="image" accept="image/jpeg" required>
       </div>
