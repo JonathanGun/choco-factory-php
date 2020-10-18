@@ -8,7 +8,7 @@ class Model
     protected $fields = array(); //fields list
     public function __construct($table)
     {
-        $this->dbconfig = parse_ini_file(CONFIG_PATH . DS . 'config.ini', true);
+        $this->dbconfig = parse_ini_file(CONFIG_PATH . 'config.ini', true);
         $this->db = new Mysql($this->dbconfig);
         $this->table = $this->dbconfig['prefix'] . $table;
         $this->getFields();

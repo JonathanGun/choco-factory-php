@@ -8,10 +8,10 @@ class Framework
         session_start();
 
         set_error_handler(function ($severity, $message, $file, $line) {
-            $error_msg = $message . "\nFile: " . $file . "\nLine: " . $line;
+            $error_msg = '[' . date('d/m/Y h:i:s a', time()) . "]\n" . $message . "\nFile: " . $file . "\nLine: " . $line . "\n\n";
             file_put_contents("log.txt", $error_msg, FILE_APPEND);
             if (PRODUCTION) {
-                throw new \ErrorException($message, $severity, $severity, $file, $line);
+                throw new ErrorException($message, $severity, $severity, $file, $line);
             } else {
                 echo '<h3>' . str_replace("\n", "</h3><h3>", $error_msg) . '</h3>';
             }
@@ -39,9 +39,11 @@ class Framework
 
     private static function init()
     {
+        date_default_timezone_set('Asia/Jakarta');
+
         // Define path constants
         define("DS", DIRECTORY_SEPARATOR);
-        define("ROOT", dirname(getcwd()) . DS);
+        define("ROOT", dirname(getcwd()) . DS . 'htdocs' . DS);
         define("APP_PATH", ROOT . 'application' . DS);
         define("FRAMEWORK_PATH", ROOT . "framework" . DS);
         define("PUBLIC_PATH", ROOT . "public" . DS);

@@ -13,6 +13,7 @@ Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are
 
 1. PHP
 1. Mysql
+1. Python 3 (tested on 3.6+)
 1. Your favorite browser
 
 ## Setting Up
@@ -20,7 +21,8 @@ Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are
 1. Install Requirements (I used [XAMPP](https://www.apachefriends.org/download.html) to install all requirements)
 1. Clean (delete all files) inside PHP `htdocs` folder
 1. Clone repo inside PHP `htdocs` folder
-1. Copy `config.example.ini`, rename to `config.ini`
+1. Open folder `application/config`
+1. Duplicate `config.example.ini`, rename to `config.ini`
 1. Adjust `config.ini` if needed
 1. Run PHP and MySQL (more info see next section)
 1. Restore database schema (more info see next section)
