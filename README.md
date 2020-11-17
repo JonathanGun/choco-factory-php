@@ -9,13 +9,23 @@ Simple Stock Management Website made using pure PHP, HTML, CSS, and JS. Here are
 - Data are saved on MySQL databases,
 - no framework library used, but I made my own, worked around MVC concept
 
-Update Oct 19, 2020: deployed on [http://jonathan.elseproperty.com/](http://jonathan.elseproperty.com/)
+Update Oct 19, 2020:
+
+- deployed on [http://jonathan.elseproperty.com/](http://jonathan.elseproperty.com/)
+
+Update Nov 17, 2020:
+
+- Integrated with factory website.
+- Add stock only sends deliver request to factory (wait factory approval).
+- Add new chocolate need to submit recipe (ingredient list).
+
+Use branch `webonly` to use older version.
 
 ## Requirements
 
 1. PHP (tested on 5.6+)
 1. Mysql (tested on 5.5.8)
-1. Python 3 (tested on 3.6+)
+1. Python 3 (tested on 3.6+) - for populating sample image
 1. Your favorite browser
 
 ## Setting Up
