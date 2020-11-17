@@ -7,6 +7,8 @@ class ChocolateController extends Controller
         parent::__construct();
         require VIEW_PATH . "ChocolateView.class.php";
         $this->model = $this->chocolateModel;
+        $this->requestClient = new SoapClient("http://localhost:8080/request/?wsdl");
+        $this->recipeClient = new SoapClient("http://localhost:8080/recipe/?wsdl");
     }
 
     public function search($search_query)
@@ -34,16 +36,35 @@ class ChocolateController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
-            $id = $this->model->insert(array("Name" => $name, "Price" => $price, "Description" => $description, "Stock" => $stock));
-            $this->saveImage($id);
+            $id = $this->model->insert(array(
+                "Name" => $name,
+                "Price" => $price,
+                "Description" => $description,
+                "Stock" => 0,
+            ));
+
             if ($id) {
-                header("Location: /chocolate/view/$id");
-                die();
-            } else {
-                echo "invalid add chocolate";
-                header("Location: /chocolate/add/");
-                die();
+                $this->saveImage($id);
+
+                $data = array(
+                    "chocoid" => $id,
+                    "name" => $name,
+                    "price" => $baseprice,
+                    "ids" => $ingredientid,
+                    "amounts" => $ingredientamount,
+                );
+                $newId = $this->recipeClient->addRecipe($data)->return;
+
+                if ($newId >= 0) {
+                    $this->restockUtil($id, $stock);
+
+                    header("Location: /chocolate/view/$id");
+                    die();
+                }
             }
+            echo "invalid add chocolate";
+            header("Location: /chocolate/add/");
+            die();
         } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             echo (new ChocolateView(
                 'create.php',
@@ -55,7 +76,6 @@ class ChocolateController extends Controller
 
     private function saveImage($id)
     {
-        print_r($_FILES);
         if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
             file_put_contents("log.txt", "Upload failed with error code " . $_FILES['file']['error']);
             die();
@@ -136,17 +156,7 @@ class ChocolateController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             extract($_POST);
             if ($amount) {
-                $this->model->addChocolateAmount($i, $amount);
-
-                require_once VIEW_PATH . "ChocolateView.class.php";
-                echo (new ChocolateView(
-                    'updatesuccess.php',
-                    'Add Stock',
-                    array(
-                        'chocolate' => $this->model->selectByPk($i),
-                        "amount" => $amount,
-                    )
-                ))->render();
+                $this->restockUtil($i, $amount);
             } else {
                 echo "invalid add stock";
                 header("Location: /chocolate/restock/$i/");
@@ -159,6 +169,29 @@ class ChocolateController extends Controller
                 'Stock',
                 array(
                     'chocolate' => $this->model->selectByPk($i),
+                )
+            ))->render();
+        }
+    }
+
+    private function restockUtil($id, $amount)
+    {
+        $data = array(
+            'chocoid' => $id,
+            'amount' => $amount,
+        );
+        $result = $this->requestClient->addRequest($data)->return;
+
+        if ($result > 0) {
+            file_put_contents("pending.txt", $result . "\n", FILE_APPEND);
+
+            require_once VIEW_PATH . "ChocolateView.class.php";
+            echo (new ChocolateView(
+                'updatesuccess.php',
+                'Add Stock',
+                array(
+                    'chocolate' => $this->model->selectByPk($id),
+                    "amount" => $amount,
                 )
             ))->render();
         }

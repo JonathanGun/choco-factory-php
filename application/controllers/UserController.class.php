@@ -75,7 +75,7 @@ class UserController extends Controller
         if (count($arr) === 2) {
             $username = $arr[0];
             $email = str_replace(':', '.', $arr[1]);
-            echo (!$this->model->exists($username, $email)) ? 'true' : 'false';
+            echo (!$this->model->exists($username)) ? 'true' : 'false';
         } else {
             echo 'false';
         }

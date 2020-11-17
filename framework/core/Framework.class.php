@@ -18,6 +18,31 @@ class Framework
         });
 
         try {
+            $lastUpdate = file_get_contents("lastupdate.txt");
+            $interval = 0 + 60 * 0 + 3600 * 12 + 86400 * 0; // every 12 hours
+            if (time() - $lastUpdate > $interval) {
+                $file = CONTROLLER_PATH . 'ChocolateController.class.php';
+                require $file;
+                $chocoController = new ChocolateController();
+
+                // check delivered from pending list
+                $ids = explode("\n", file_get_contents("pending.txt"));
+                array_pop($ids);
+                file_put_contents("pending.txt", "");
+
+                $client = new SoapClient("http://localhost:8080/request/?wsdl");
+                foreach ($ids as $id) {
+                    $chocoRequest = $client->getRequest(array('id' => $id))->return;
+                    $delivered = strcmp($chocoRequest->status, "Delivered") == 0;
+                    if ($delivered) {
+                        $chocoController->model->addChocolateAmount($chocoRequest->chocoID, $chocoRequest->amount);
+                    } else {
+                        file_put_contents("pending.txt", $id . "\n", FILE_APPEND);
+                    }
+                }
+                file_put_contents("lastupdate.txt", time());
+            }
+
             // Routing
             $request = new Request();
             Router::parse($request->url, $request);

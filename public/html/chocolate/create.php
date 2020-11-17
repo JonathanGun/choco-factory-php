@@ -2,6 +2,7 @@
 $view = new View();
 echo $view->render('navbar.php');
 ?>
+
 <div class="container bg-white">
   <h2>Add New Chocolate</h2>
   <form action="/chocolate/add/" enctype="multipart/form-data" method="POST">
@@ -12,9 +13,38 @@ echo $view->render('navbar.php');
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-xs-12 col-sm-2 form-labell">Price</div>
+      <div class="col-xs-12 col-sm-2 form-label">Ingredients</div>
       <div class="col-xs-12 col-sm-10">
-        <input type="number" class="form-input" placeholder="8000" name="price" min="0" step="1" required>
+        <div class="row mb-2 mt-4">
+          <div class="col-xs-12 col-sm-8">
+            <p>Ingredient Name</p>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+          <p>Amount (pcs)</p>
+          </div>
+        </div>
+        <div id="ingredients"></div>
+        <div class="row two-button" id="ingredient-button" style="display: none">
+        <div class="col-xs-12 col-sm-6">
+          <button type="button" class="btn btn-secondary" onclick="reduceIngredient()">-</button>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <button type="button" class="btn btn-primary" onclick="addIngredient()">+</button>
+        </div>
+        <input type="hidden" id="n" name="n" value="0" required>
+      </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-12 col-sm-2 form-label">Base Price</div>
+      <div class="col-xs-12 col-sm-10">
+        <input type="number" class="form-input" placeholder="10000" name="baseprice" min="0" step="1" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-12 col-sm-2 form-label">Sell Price</div>
+      <div class="col-xs-12 col-sm-10">
+        <input type="number" class="form-input" placeholder="20000" name="price" min="0" step="1" required>
       </div>
     </div>
     <div class="form-group row">
@@ -45,3 +75,5 @@ echo $view->render('navbar.php');
     </div>
   </form>
 </div>
+
+<script src="/public/js/ajaxingredient.js"></script>
